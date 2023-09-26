@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
+#    By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/09/21 17:37:08 by sbalk            ###   ########.fr        #
+#    Updated: 2023/09/26 13:45:19 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CFLAGS		= -Werror -Wall -Wextra -g
 RM			= rm
 SRC_DIR		= src/
 OBJ_DIR		= obj/
-INCLUDE		= -I include -I libft/include -I $(MLX_DIR)
+INCLUDE		= -I include -I libft/include -I $(MLX_DIR) -I/opt/X11/include
 
 # Colors
 
@@ -45,7 +45,8 @@ all:		$(NAME)
 $(NAME):	$(OBJ)
 			@make -C $(LIB_DIR)
 			@make -C $(MLX_DIR)
-			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -L $(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
+			@$(CC) $(CFLAGS) $(OBJ) libft/libft.a minilibx-linux/libmlx.a minilibx-linux/libmlx_Darwin.a -I/usr/X11/include -L/usr/X11/lib -lX11 -lXext -lm -o $(NAME)
+# @$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -L $(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
 			@echo "$(GREEN)Created $(NAME)!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c

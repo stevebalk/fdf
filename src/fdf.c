@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:41:41 by sbalk             #+#    #+#             */
-/*   Updated: 2023/09/25 19:08:54 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/09/26 13:47:37 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,21 +200,21 @@ int	main(void)
 	/* Keyhook */
 	vars.mlx = mlx;
 	vars.win = mlx_window;
-	mlx_key_hook(vars.win, key_hook, &vars);
 	// mlx_string_put(mlx, mlx_window, 100, 100, BLACK, "HELLO WORLDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
 	mlx_put_image_to_window(mlx, mlx_window, img.img, 0, 0);
+	mlx_key_hook(vars.win, key_hook, &vars);
 
-	while (end.x < windowsize.x)`
-	{
-		draw_background(&img, windowsize, bg_color);
-		draw_line(&img, start, end, BLUE);
-		start.x++;
-		end.x++;
-		bg_color--;
-		usleep(5000);
-		mlx_put_image_to_window(mlx, mlx_window, img.img, 0, 0);
-	}
+	// while (end.x < windowsize.x)
+	// {
+	// 	draw_background(&img, windowsize, bg_color);
+	// 	draw_line(&img, start, end, BLUE);
+	// 	start.x++;
+	// 	end.x++;
+	// 	bg_color--;	
+	// 	usleep(5000);
+	// 	mlx_put_image_to_window(mlx, mlx_window, img.img, 0, 0);
+	// }
 	draw_line(&img, start, end, line_color);
+	mlx_put_image_to_window(mlx, mlx_window, img.img, 0, 0);
 	mlx_loop(mlx);
-	mlx_window = mlx_window;
 }
