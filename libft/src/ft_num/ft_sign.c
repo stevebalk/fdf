@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_sign.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/03 15:56:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/11 16:05:17 by sbalk            ###   ########.fr       */
+/*   Created: 2023/09/28 15:30:16 by sbalk             #+#    #+#             */
+/*   Updated: 2023/09/28 15:49:21 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct s_lst
+int	ft_sign(int num)
 {
-	char			*str;
-	size_t			str_len;
-	size_t			start;
-	size_t			tlen;
-	struct s_lst	*next;
-}	t_lst;
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4096
-# endif
-
-char	*get_next_line(int fd);
-void	gnl_node_to_string(char *str, t_lst *node);
-t_lst	*gnl_free_list(t_lst *node);
-
-#endif
+	if (num < 0)
+		return (-1);
+	else if (num > 0)
+		return (1);
+	else
+		return (0);
+}

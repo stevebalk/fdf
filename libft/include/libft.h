@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 18:04:27 by sbalk             #+#    #+#             */
-/*   Updated: 2023/09/21 15:47:32 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/09/28 15:49:45 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ int		ft_abs(int nb);
 
 /* Return rounded number */
 int		ft_round(float num);
+
+/* Return -1 if num < 0, 1 if > 0 and 0 if 0 */
+int	ft_sign(int num);
 
 /////////////////////
 //      CHECKS     //

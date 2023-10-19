@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/03 15:56:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/11 16:05:17 by sbalk            ###   ########.fr       */
+/*   Created: 2023/09/28 15:35:08 by sbalk             #+#    #+#             */
+/*   Updated: 2023/10/11 16:18:21 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "fdf.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct s_lst
+void	init_fdf(t_fdf *fdf)
 {
-	char			*str;
-	size_t			str_len;
-	size_t			start;
-	size_t			tlen;
-	struct s_lst	*next;
-}	t_lst;
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4096
-# endif
-
-char	*get_next_line(int fd);
-void	gnl_node_to_string(char *str, t_lst *node);
-t_lst	*gnl_free_list(t_lst *node);
-
-#endif
+	fdf->mlx = mlx_init();
+	fdf->win = mlx_new_window(fdf->mlx, WIDTH, HEIGHT, "FdF");
+	fdf->input_map = NULL;
+	fdf->map = NULL;
+	fdf->map_size = (t_vec2){0, 0};
+	fdf->win_size.x = WIDTH;
+	fdf->win_size.y = HEIGHT;
+	fdf->bg_color	= BLACK;
+	fdf->default_color = WHITE;
+	fdf->cur_color = fdf->default_color;
+	fdf->zoom = 50;
+}

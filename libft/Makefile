@@ -46,7 +46,7 @@ FTLST			=	ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone \
 					ft_lstiter ft_lstlast ft_lstmap ft_lstnew ft_lstsize
 
 FTNUM_DIR		=	ft_num/
-FTNUM			=	ft_abs ft_round
+FTNUM			=	ft_abs ft_round ft_sign
 
 FTPRINTF_DIR	=	ft_printf/
 FTPRINTF		=	ft_parse ft_print_chars ft_printf ft_print_hex ft_print_nbrs ft_util

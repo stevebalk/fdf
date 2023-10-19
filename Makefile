@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+         #
+#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/09/26 13:45:19 by sbalk            ###   ########.fr        #
+#    Updated: 2023/10/02 18:04:47 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,11 @@ MLX_DIR		= minilibx-linux/
 MLX_NAME	= libmlx.a
 CC			= gcc
 CFLAGS		= -Werror -Wall -Wextra -g
+CFLAGS		= -Wall -Wextra -g
 RM			= rm
 SRC_DIR		= src/
 OBJ_DIR		= obj/
-INCLUDE		= -I include -I libft/include -I $(MLX_DIR) -I/opt/X11/include
+INCLUDE		= -I include -I libft/include -I $(MLX_DIR)
 
 # Colors
 
@@ -34,7 +35,15 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-SRC_FILES	=	fdf
+SRC_FILES	=	main \
+				draw \
+				error \
+				init \
+				key_handling \
+				parsing \
+				projection \
+				math \
+				
 
 SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ				=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
@@ -45,8 +54,7 @@ all:		$(NAME)
 $(NAME):	$(OBJ)
 			@make -C $(LIB_DIR)
 			@make -C $(MLX_DIR)
-			@$(CC) $(CFLAGS) $(OBJ) libft/libft.a minilibx-linux/libmlx.a minilibx-linux/libmlx_Darwin.a -I/usr/X11/include -L/usr/X11/lib -lX11 -lXext -lm -o $(NAME)
-# @$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -L $(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
+			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -L $(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
 			@echo "$(GREEN)Created $(NAME)!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
