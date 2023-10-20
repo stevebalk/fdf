@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/19 16:26:05 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/20 18:33:13 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct	s_fdf
 	void		*mlx;
 	void		*win;
 	t_vert2d	**map;
-	t_vert3d	**input_map;
+	t_vert3d	***input_map;
 	t_vec2		win_size;
 	t_vec2		map_size;
 	int			cur_color;
@@ -114,9 +114,13 @@ typedef struct	s_vars
 
 void	init_fdf(t_fdf *fdf);
 
+/* Map parsing */
+
+void read_map(t_fdf *fdf, char *filename);
+
 /* ERROR */
 
-void	error_msg(t_fdf *fdf, char *msg, int shall_exit);
+void	error_msg(t_fdf *fdf, char *func_name, char *msg, int shall_exit);
 
 /* DRAW */
 

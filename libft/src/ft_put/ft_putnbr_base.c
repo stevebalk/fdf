@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:02:28 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/19 16:03:37 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/20 18:29:35 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_putnbr_base(int nbr, char *base)
 	{
 		nbr_l = nbr;
 		nbr_l = -nbr_l;
-		ft_putchar('-');
+		ft_putchar_fd('-', 1);
 	}
 	else
 		nbr_l = nbr;
@@ -62,5 +62,5 @@ void	ft_putnbr_base(int nbr, char *base)
 		i++;
 	}
 	while (--i >= 0)
-		ft_putchar(nbr_c[i]);
+		ft_putchar_fd(nbr_c[i], 1);
 }
