@@ -3,16 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:37:15 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/11 17:24:34 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/19 17:06:22 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_vert3d	parse_chunk(t_fdf *fdf, char *chunk, int row, int column)
+int	hex_to_int(t_fdf *fdf, char *hex_string)
+{
+    int result = 0;
+	int i;
+
+	result = 0;
+	i = 0;
+	while (hex_string[i] != '\0')
+	{
+		result = result * 16;
+		if (hex_string[i] >= '0' && hexString[i] <= '9')
+            result += hex_string[i] - '0';
+		else if (hex_string[i] >= 'A' && hex_string[i] <= 'F')
+            result += hex_string[i] - 'A' + 10;
+        else if (hex_string[i] >= 'a' && hex_string[i] <= 'f')
+            result += hex_string[i] - 'a' + 10;
+        else
+            return 0;
+		i++;
+	}
+    return result;
+}
+
+int	parse_color(t_fdf *fdf, char *str)
+{
+	int	len;
+	int	i;
+
+	len = strlen(str);
+	i = 0;
+	if (!(len >= 2 && len <= 8 && len % 2 == 0))
+		return (fdf->default_color);
+	while (str[i])
+	{
+		if (ft_strchr(HEXALOW, str[i]))
+			i++;
+		else if (ft_strchr(HEXAUP, str[i]))
+			i++;
+		else
+			return (fdf->default_color);
+	}
+	return (hex_to_int(fdf, str));
+}
+
+/* Parse one chunk, like 2,0xFF45F500 */
+t_vert3d	*parse_chunk(t_fdf *fdf, char *chunk, int row, int column)
 {
 	char		*str;
 	t_vert3d	*vert;
@@ -21,17 +66,18 @@ t_vert3d	parse_chunk(t_fdf *fdf, char *chunk, int row, int column)
 	vert->color = fdf->default_color;
 	vert->pos.z = ft_atoi(chunk);
 	str = chunk;
-	while (ft_is_space(*str))
+	while (ft_is_space(*str) && *str == '-' && *str == '+')
 		str++;
 	while (*str >= '0' && *str <= '9')
 		str++;
-	if (*str == '\0')
-	{
-		
-	}
+	if (*str == '\0' || !ft_strncmp(str, ",0x", 3) == 0)
+		vert->color = fdf->default_color;
+	else
+		vert->color = parse_color(fdf, str + 3);
+	return (vert);
 }
 
-/* Returns elements count of the line */
+/* Returns element count of the line */
 int	parse_line(t_fdf *fdf, char *line, int row)
 {
 	char	**chunks;
@@ -46,7 +92,7 @@ int	parse_line(t_fdf *fdf, char *line, int row)
 	{
 		size++;
 	}
-	fdf->final_points[row] = malloc(size * sizeof(t_vert2d));
+	fdf->map[row] = malloc(size * sizeof(t_vert3d));
 	while (i < size)
 	{
 
@@ -54,6 +100,8 @@ int	parse_line(t_fdf *fdf, char *line, int row)
 
 }
 
+
+/* Read the mapfile and check if it's in the correct format*/
 void read_map(t_fdf *fdf, char *filename)
 {
 	char	*line;

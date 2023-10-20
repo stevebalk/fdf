@@ -3,13 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/11 16:02:26 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/19 16:26:05 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+# include "libft.h"
+# include "mlx_int.h"
+# include "mlx.h"
+# include <math.h>
+# include <fcntl.h>
+# include <errno.h>
 
 #ifndef FDF_H
 # define FDF_H
@@ -77,7 +83,6 @@ typedef struct	s_vars
 	void	*win;
 }				t_vars;
 
-
 /* KEYCODES */
 
 #define ESC						65307
@@ -95,9 +100,6 @@ typedef struct	s_vars
 #define MOUSE_CLICK_FORWARD		9
 #define MOUSE_CLICK_BACKWARD	8
 
-
-
-
 /* COLORS */
 #define WHITE	0x00FFFFFF
 #define BLACK	0x00000000
@@ -107,13 +109,6 @@ typedef struct	s_vars
 #define YELLOW	0x00FFFF00
 #define CYAN	0x0000FFFF
 #define MAGENTA	0x00FF00FF
-
-# include "libft.h"
-# include "mlx_int.h"
-# include "mlx.h"
-# include <math.h>
-# include <fcntl.h>
-# include <errno.h>
 
 /* INIT */
 

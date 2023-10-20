@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 18:04:27 by sbalk             #+#    #+#             */
-/*   Updated: 2023/09/28 15:49:45 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/19 16:22:08 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int		ft_round(float num);
 
 /* Return -1 if num < 0, 1 if > 0 and 0 if 0 */
 int	ft_sign(int num);
+
 
 /////////////////////
 //      CHECKS     //
@@ -182,6 +183,9 @@ void	ft_putendl_fd(char *s, int fd);
 
 /* Prints number to the given file descriptor */
 void	ft_putnbr_fd(int n, int fd);
+
+/* Converts and prints a number with a given base */
+void	ft_putnbr_base(int nbr, char *base)
 
 /////////////////////
 //     LIST      ////
