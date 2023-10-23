@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/10/02 18:04:47 by sbalk            ###   ########.fr        #
+#    Updated: 2023/10/23 19:37:46 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ MLX_DIR		= minilibx-linux/
 MLX_NAME	= libmlx.a
 CC			= gcc
 CFLAGS		= -Werror -Wall -Wextra -g
-CFLAGS		= -Wall -Wextra -g
+# CFLAGS		= -Wall -Wextra -g
 RM			= rm
 SRC_DIR		= src/
 OBJ_DIR		= obj/
@@ -43,6 +43,7 @@ SRC_FILES	=	main \
 				parsing \
 				projection \
 				math \
+				check_map \
 				
 
 SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))

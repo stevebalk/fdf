@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:36:07 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/02 16:11:16 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/23 17:19:19 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,28 +70,49 @@ void projectToIsometric(t_fdf *fdf, t_vec3 input, t_vec2 *output) {
 // 	return (ret);
 // }
 
-t_vec2 **set_2d_points_grid(t_fdf *fdf, t_vec3 grid[10][10], int width, int height)
+// t_vec2 **set_2d_points_grid(t_fdf *fdf, t_vec3 grid[10][10], int width, int height)
+// {
+// 	int		i;
+// 	int		j;
+// 	t_vec2	**ret;
+// 	t_vec3	point;
+// 	i = 0;
+// 	ret = malloc(height * sizeof(t_vec2 *));
+// 	if (ret == NULL)
+// 		return (NULL);
+// 	while (i < height)
+// 	{
+// 		j = 0;
+// 		ret[i] = malloc(width * sizeof(t_vec2));
+// 		while (j < width)
+// 		{
+// 			point = grid[i][j];
+// 			ret[i][j].x = ft_round(fdf->zoom * (point.x - point.y)) * 0.841 + (fdf->win_size.x / 2);
+// 			ret[i][j].y = ft_round(fdf->zoom * (point.x + point.y)) * 0.5 - (point.z * fdf->zoom) + (fdf->win_size.y / 2);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	return (ret);
+// }
+
+void	set_2d_points_grid(t_fdf *fdf)
 {
 	int		i;
 	int		j;
-	t_vec2	**ret;
 	t_vec3	point;
+
 	i = 0;
-	ret = malloc(height * sizeof(t_vec2 *));
-	if (ret == NULL)
-		return (NULL);
-	while (i < height)
+	while (i < fdf->map_size.y)
 	{
 		j = 0;
-		ret[i] = malloc(width * sizeof(t_vec2));
-		while (j < width)
+		while (j < fdf->map_size.x)
 		{
-			point = grid[i][j];
-			ret[i][j].x = ft_round(fdf->zoom * (point.x - point.y)) * 0.841 + (fdf->win_size.x / 2);
-			ret[i][j].y = ft_round(fdf->zoom * (point.x + point.y)) * 0.5 - (point.z * fdf->zoom) + (fdf->win_size.y / 2);
+			point = fdf->input_map[i][j].pos;
+			fdf->map[i][j].pos.x = ft_round(fdf->zoom * (point.x - point.y)) * 0.841 + (fdf->win_size.x / 2);
+			fdf->map[i][j].pos.y = ft_round(fdf->zoom * (point.x + point.y)) * 0.5 - (point.z * fdf->zoom) + (fdf->win_size.y / 2);
 			j++;
 		}
 		i++;
 	}
-	return (ret);
 }

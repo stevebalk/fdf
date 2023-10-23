@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/20 18:33:13 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/23 19:37:33 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct	s_fdf
 	void		*mlx;
 	void		*win;
 	t_vert2d	**map;
-	t_vert3d	***input_map;
+	t_vert3d	**input_map;
 	t_vec2		win_size;
 	t_vec2		map_size;
 	int			cur_color;
@@ -116,11 +116,12 @@ void	init_fdf(t_fdf *fdf);
 
 /* Map parsing */
 
-void read_map(t_fdf *fdf, char *filename);
+void	check_map_format(t_fdf *fdf, char *filename);
+void	read_map(t_fdf *fdf, char *filename);
 
 /* ERROR */
 
-void	error_msg(t_fdf *fdf, char *func_name, char *msg, int shall_exit);
+void	error_msg(t_fdf *fdf, char *msg, int use_errno, int shall_exit);
 
 /* DRAW */
 
@@ -146,7 +147,7 @@ double	deg_to_rad(int deg);
 /* PROJECTION */
 
 // t_vec2 *set_2d_points(t_fdf *fdf, t_vec3 points[], int size);
-t_vec2 **set_2d_points_grid(t_fdf *fdf, t_vec3 grid[10][10], int rows, int columns);
+void	set_2d_points_grid(t_fdf *fdf);
 
 /* MEMORY */
 

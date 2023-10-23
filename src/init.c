@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:35:08 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/11 16:18:21 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/23 15:32:50 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ void	init_fdf(t_fdf *fdf)
 	fdf->bg_color	= BLACK;
 	fdf->default_color = WHITE;
 	fdf->cur_color = fdf->default_color;
-	fdf->zoom = 50;
+	fdf->zoom = 20;
 }
