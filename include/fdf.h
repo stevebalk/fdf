@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/23 19:37:33 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/24 15:19:15 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@
 /* Windowsize */
 #define WIDTH	1920
 #define HEIGHT	1080
+
+typedef struct	s_line
+{
+	int	dx;
+	int	sx;
+	int	dy;
+	int	sy;
+	int err;
+}				t_line;
 
 typedef struct	s_vec2
 {
@@ -113,6 +122,7 @@ typedef struct	s_vars
 /* INIT */
 
 void	init_fdf(t_fdf *fdf);
+void	init_maps(t_fdf *fdf);
 
 /* Map parsing */
 
@@ -131,7 +141,8 @@ void	draw_background(t_data *data, t_vec2 size, int color);
 void	draw_line(t_data *data, t_vec2 start, t_vec2 end, int color);
 void	draw_point(t_data *data, t_vec2 pos, int size, int color);
 void	draw_cube(t_data *data, int size);
-void	redraw(t_fdf *fdf);
+// void	redraw(t_fdf *fdf);
+void	draw_mesh(t_fdf *fdf);
 
 /* KEY HANDLING */
 

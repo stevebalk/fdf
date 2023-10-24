@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:41:41 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/23 19:39:39 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/24 14:58:31 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,26 @@ int	main(int argc, char *argv[])
 	t_data	img;	// Image data, necessary for mlx
 	t_fdf	fdf;
 
-	init_fdf(&fdf);
 	if (argc != 2)
 	{
 		ft_printf("Wrong number of arguments.\n");
 		ft_printf("Use: ./fdf <mapfile>\n");
 		exit(1);
 	}
+	init_fdf(&fdf);
 	check_map_format(&fdf, argv[1]);
-	// read_map(&fdf, argv[1]);
+	init_maps(&fdf);
+	read_map(&fdf, argv[1]);
 	// print_input_map(&fdf);
 	img.img = mlx_new_image(fdf.mlx, fdf.win_size.x, fdf.win_size.y);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	img.win_size = fdf.win_size;
 	fdf.img	 = &img;
 	draw_background(&img, fdf.win_size, fdf.bg_color);
-	// init_map(&fdf);
-	// set_2d_points_grid(&fdf);
+	// ft_printf("Height: %d\n", fdf.map_size.y);
+
+	set_2d_points_grid(&fdf);
+	draw_mesh(&fdf);
 	// printf("End vectors:\n");
 	// for (int x = 0; x < fdf.map_size.y; x++) {
 	// 	for (int y = 0; y < fdf.map_size.x; y++) {
@@ -140,10 +143,11 @@ int	main(int argc, char *argv[])
 	/* Keyhook */
 	mlx_key_hook(fdf.win, key_hook, &fdf);
 	// mlx_mouse_hook(fdf.win, mouse_hook, &fdf);
-	setup_controls(&fdf);
-
+	// setup_controls(&fdf);
 	mlx_put_image_to_window(fdf.mlx, fdf.win, img.img, 0, 0);
 	mlx_loop(fdf.mlx);
+	free_fdf(&fdf);
+
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 16:29:21 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/23 19:52:12 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/24 13:09:26 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	check_file_integrity(t_fdf *fdf, char *filename)
 		error_msg(fdf, "Error: No read permission", 1, 1);
 }
 
+/* Counts elements in one line seperated by space */
 int	get_column_length(t_fdf *fdf, char *line)
 {
 	int	columns;
@@ -45,6 +46,8 @@ int	get_column_length(t_fdf *fdf, char *line)
 	return (columns);
 }
 
+/* Set newline character to null character and check
+if line is correctly formated */
 int	is_line_correct(t_fdf *fdf, char *line)
 {
 	line[ft_strlen(line) - 1] = '\0';
