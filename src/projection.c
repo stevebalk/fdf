@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:36:07 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/23 17:19:19 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/24 22:37:27 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,28 @@ void projectToIsometric(t_fdf *fdf, t_vec3 input, t_vec2 *output) {
 // 	return (ret);
 // }
 
-void	set_2d_points_grid(t_fdf *fdf)
+// void	set_2d_points_grid(t_fdf *fdf)
+// {
+// 	int		i;
+// 	int		j;
+// 	t_vec3	point;
+
+// 	i = 0;
+// 	while (i < fdf->map_size.y)
+// 	{
+// 		j = 0;
+// 		while (j < fdf->map_size.x)
+// 		{
+// 			point = fdf->input_map[i][j].pos;
+// 			fdf->map[i][j].pos.x = ft_round(fdf->zoom * (point.x - point.y)) * 0.841 + (fdf->win_size.x / 2);
+// 			fdf->map[i][j].pos.y = ft_round(fdf->zoom * (point.x + point.y)) * 0.5 - (point.z * fdf->zoom) + (fdf->win_size.y / 2);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
+
+void	project_iso(t_fdf *fdf)
 {
 	int		i;
 	int		j;
@@ -109,10 +130,70 @@ void	set_2d_points_grid(t_fdf *fdf)
 		while (j < fdf->map_size.x)
 		{
 			point = fdf->input_map[i][j].pos;
-			fdf->map[i][j].pos.x = ft_round(fdf->zoom * (point.x - point.y)) * 0.841 + (fdf->win_size.x / 2);
-			fdf->map[i][j].pos.y = ft_round(fdf->zoom * (point.x + point.y)) * 0.5 - (point.z * fdf->zoom) + (fdf->win_size.y / 2);
+			fdf->map[i][j].pos.x = ft_round(fdf->zoom * (point.x - point.y)) * 0.841;
+			fdf->map[i][j].pos.y = ft_round(fdf->zoom * (point.x + point.y)) * 0.5 - (point.z * fdf->zoom);
 			j++;
 		}
 		i++;
+	}
+	// fdf->zoom = fit_zoom_to_windowsize(fdf);
+	// ft_printf("ZOOM: %i\n", fdf->zoom);
+	// i = 0;
+	// while (i < fdf->map_size.y)
+	// {
+	// 	j = 0;
+	// 	while (j < fdf->map_size.x)
+	// 	{
+	// 		point = fdf->input_map[i][j].pos;
+	// 		fdf->map[i][j].pos.x *= fdf->zoom;
+	// 		fdf->map[i][j].pos.y *= fdf->zoom;
+	// 		ft_printf("X: %i, Y: %i\n", fdf->map[i][j].pos.x, fdf->map[i][j].pos.y);
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
+}
+
+void	transform(t_fdf *fdf, t_vec2 direction)
+{
+	int	i;
+	int	j;
+
+	if (!(direction.x == 0 && direction.y == 0))
+	{
+		i = 0;
+		while (i < fdf->map_size.x)
+		{
+			j = 0;
+			while (j < fdf->map_size.y)
+			{
+				fdf->map[j][i].pos.x += direction.x;
+				fdf->map[j][i].pos.y += direction.y;
+				j++;
+			}
+			i++;
+		}
+	}
+}
+
+void	zoom(t_fdf *fdf, int zoom)
+{
+	int	i;
+	int	j;
+
+	if (zoom > 0)
+	{
+		i = 0;
+		while (i < fdf->map_size.x)
+		{
+			j = 0;
+			while (j < fdf->map_size.y)
+			{
+				fdf->map[j][i].pos.x *= zoom;
+				fdf->map[j][i].pos.y *= zoom;
+				j++;
+			}
+			i++;
+		}
 	}
 }

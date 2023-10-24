@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/24 15:19:15 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/24 16:32:38 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,11 @@ typedef struct	s_fdf
 	t_vert3d	**input_map;
 	t_vec2		win_size;
 	t_vec2		map_size;
+	t_vec2		pivot;
 	int			cur_color;
 	int			bg_color;
 	int			default_color;
 	int			zoom;
-	t_vec2		**test_final_points;
-	t_vec3		*grid;
 	t_data		*img;
 
 }				t_fdf;
@@ -157,8 +156,11 @@ double	deg_to_rad(int deg);
 
 /* PROJECTION */
 
-// t_vec2 *set_2d_points(t_fdf *fdf, t_vec3 points[], int size);
-void	set_2d_points_grid(t_fdf *fdf);
+int	fit_zoom_to_windowsize(t_fdf *fdf);
+// void	set_2d_points_grid(t_fdf *fdf);
+void	project_iso(t_fdf *fdf);
+void	transform(t_fdf *fdf, t_vec2 direction);
+void	zoom(t_fdf *fdf, int zoom);
 
 /* MEMORY */
 

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:41:41 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/24 14:58:31 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/24 22:35:56 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,22 @@ void	print_input_map(t_fdf *fdf)
 	}
 }
 
-void	init_map(t_fdf *fdf)
-{
-	int	i;
+// void	init_map(t_fdf *fdf)
+// {
+// 	int	i;
 
-	i = 0;
-	fdf->map = ft_calloc(fdf->map_size.y + 1, sizeof(t_vert2d *));
-	if (fdf->map == NULL)
-		error_msg(fdf, "Error: ft_calloc failed" , 1, 1);
-	while (i < fdf->map_size.x)
-	{
-		fdf->map[i] = ft_calloc(fdf->map_size.x, sizeof(t_vert2d));
-		if (fdf->map[i] == NULL)
-			error_msg(fdf, "Error: ft_calloc failed" , 1, 1);
-		i++;
-	}
-}
+// 	i = 0;
+// 	fdf->map = ft_calloc(fdf->map_size.y + 1, sizeof(t_vert2d *));
+// 	if (fdf->map == NULL)
+// 		error_msg(fdf, "Error: ft_calloc failed" , 1, 1);
+// 	while (i < fdf->map_size.x)
+// 	{
+// 		fdf->map[i] = ft_calloc(fdf->map_size.x, sizeof(t_vert2d));
+// 		if (fdf->map[i] == NULL)
+// 			error_msg(fdf, "Error: ft_calloc failed" , 1, 1);
+// 		i++;
+// 	}
+// }
 
 // mlx_new_image maybe buffer possible? overlay?
 
@@ -75,8 +75,12 @@ int	main(int argc, char *argv[])
 	fdf.img	 = &img;
 	draw_background(&img, fdf.win_size, fdf.bg_color);
 	// ft_printf("Height: %d\n", fdf.map_size.y);
+	// fdf.zoom = fit_zoom_to_windowsize(&fdf);
+	project_iso(&fdf);
+	// zoom(&fdf, fdf.zoom);
+	transform(&fdf, (t_vec2) {fdf.win_size.x / 2, fdf.win_size.y / 2});
 
-	set_2d_points_grid(&fdf);
+	// set_2d_points_grid(&fdf);
 	draw_mesh(&fdf);
 	// printf("End vectors:\n");
 	// for (int x = 0; x < fdf.map_size.y; x++) {

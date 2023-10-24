@@ -6,11 +6,39 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:35:08 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/24 13:49:12 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/24 22:36:19 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int	fit_zoom_to_windowsize(t_fdf *fdf)
+{
+	int	smallest_point;
+	int	highest_point;
+	int	point;
+	int	i;
+	int	j;
+
+	smallest_point = 0;
+	highest_point = 0;
+	i = 0;
+	while (i < fdf->map_size.y)
+	{
+		j = 0;
+		while (j < fdf->map_size.x)
+		{
+			point = fdf->map[i][j].pos.y;
+			if (point < smallest_point)
+				smallest_point = point;
+			else if(point > highest_point)
+				highest_point = point;
+			j++;
+		}
+		i++;
+	}
+	return (fdf->win_size.y / (fdf->map_size.y + highest_point - smallest_point));
+}
 
 static void	init_input_map(t_fdf *fdf)
 {
@@ -69,11 +97,13 @@ void	init_fdf(t_fdf *fdf)
 	fdf->bg_color = BLACK;
 	fdf->default_color = WHITE;
 	fdf->cur_color = fdf->default_color;
-	fdf->zoom = 20;
+	fdf->zoom = 4;
 }
 
 void	init_maps(t_fdf *fdf)
 {
+	fdf->pivot.x = (fdf->map_size.x - 1) / 2;
+	fdf->pivot.y = (fdf->map_size.y - 1) / 2;
 	init_input_map(fdf);
 	init_map(fdf);
 }
