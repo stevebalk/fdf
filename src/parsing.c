@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:37:15 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/24 16:46:31 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/25 01:42:54 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,15 @@ int	hex_to_int(char *hex_string)
 
 int	parse_color(t_fdf *fdf, char *str)
 {
-	// int	len;
 	int	color;
 	int	i;
 
 	i = 0;
-	// len = ft_strlen(str);
 	while ((str[i] >= '0' && str[i] <= '9')
 		|| (str[i] >= 'a' && str[i] <= 'z')
 		|| (str[i] >= 'A' && str[i] <= 'Z'))
 		i++;
 	str[i] = '\0';
-	// if (!(len >= 2 && len <= 8 && len % 2 == 0))
-	// 	return (fdf->default_color);
 	color = hex_to_int(str);
 	if (color == -1)
 		return (fdf->default_color);
@@ -65,6 +61,7 @@ t_vert3d	parse_chunk(t_fdf *fdf, char *chunk, int row, int column)
 	vert.pos.x = column - fdf->pivot.x;
 	vert.pos.y = row - fdf->pivot.y;
 	vert.pos.z = ft_atoi(chunk);
+	// ft_printf("Chunk: X: %i, Y: %i, %s\n", column, row, chunk);
 	str = chunk;
 	while (*str == ' ' || *str == '-' || *str == '+')
 		str++;
@@ -89,7 +86,6 @@ void	parse_line(t_fdf *fdf, char *line, int row)
 	chunks = ft_split(line, ' ');
 	if (chunks == NULL)
 		error_msg(fdf, "Error: ft_split failed", 1, 1);
-	chunks[size - 1][ft_strlen(chunks[size -1]) - 1] = '\0';
 	while (i < size)
 	{
 		fdf->input_map[row][i] = parse_chunk(fdf, chunks[i], row, i);

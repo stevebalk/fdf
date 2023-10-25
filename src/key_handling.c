@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:35:44 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/24 13:04:25 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/25 14:54:02 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,14 @@
 // 	mlx_hook(fdf->win, 4, 0, mouse_click, fdf);
 // }
 
-int	key_hook(int keycode, t_vars *vars)
+int	key_hook(int keycode, t_fdf *fdf)
 {
 	if (keycode == ESC)
-		exit(0);
-	if (vars)
+	{
+		free_everything(fdf);
+		exit(EXIT_SUCCESS);
+	}
+	if (fdf)
 		printf("Keycode: %d\n", keycode);
 	return (0);
 }

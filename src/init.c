@@ -6,44 +6,15 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:35:08 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/24 22:36:19 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/25 14:28:15 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	fit_zoom_to_windowsize(t_fdf *fdf)
-{
-	int	smallest_point;
-	int	highest_point;
-	int	point;
-	int	i;
-	int	j;
-
-	smallest_point = 0;
-	highest_point = 0;
-	i = 0;
-	while (i < fdf->map_size.y)
-	{
-		j = 0;
-		while (j < fdf->map_size.x)
-		{
-			point = fdf->map[i][j].pos.y;
-			if (point < smallest_point)
-				smallest_point = point;
-			else if(point > highest_point)
-				highest_point = point;
-			j++;
-		}
-		i++;
-	}
-	return (fdf->win_size.y / (fdf->map_size.y + highest_point - smallest_point));
-}
-
 static void	init_input_map(t_fdf *fdf)
 {
 	int	i;
-	ft_printf("Mapsize: x: %i, y: %i\n", fdf->map_size.x, fdf->map_size.y);
 
 	if (fdf->map_size.x > 0 && fdf->map_size.y > 0)
 	{
@@ -85,19 +56,39 @@ static void	init_map(t_fdf *fdf)
 		error_msg(fdf, "Error: init_map: Map size to small", 0, 1);
 }
 
-void	init_fdf(t_fdf *fdf)
+void	init_mlx(t_fdf *fdf)
 {
 	fdf->mlx = mlx_init();
+	if (fdf->mlx == NULL)
+		error_msg(fdf, "Error: mlx_init failed", 1, 1);
 	fdf->win = mlx_new_window(fdf->mlx, WIDTH, HEIGHT, "FdF");
+	if (fdf->win == NULL)
+		error_msg(fdf, "Error: mlx_new_window failed", 1, 1);
+	fdf->img = ft_calloc(1, sizeof(t_data));
+	if (fdf->img == NULL)
+		error_msg(fdf, "Error: init_mlx ft_calloc failed", 1, 1);
+	fdf->img->img = mlx_new_image(fdf->mlx, fdf->win_size.x, fdf->win_size.y);
+	if (fdf->img->img == NULL)
+		error_msg(fdf, "Error: mlx_new_image failed", 0, 1);
+	fdf->img->addr = mlx_get_data_addr(fdf->img->img,
+			&(fdf->img->bits_per_pixel),
+			&(fdf->img->line_length), &(fdf->img->endian));
+	fdf->img->win_size = fdf->win_size;
+}
+
+void	init_fdf(t_fdf *fdf)
+{
 	fdf->input_map = NULL;
+	fdf->mlx = NULL;
 	fdf->map = NULL;
-	fdf->map_size = (t_vec2){0, 0};
+	fdf->img = NULL;
+	fdf->map_size = (t_vec2i){0, 0};
 	fdf->win_size.x = WIDTH;
 	fdf->win_size.y = HEIGHT;
 	fdf->bg_color = BLACK;
 	fdf->default_color = WHITE;
 	fdf->cur_color = fdf->default_color;
-	fdf->zoom = 4;
+	fdf->zoom = 1;
 }
 
 void	init_maps(t_fdf *fdf)

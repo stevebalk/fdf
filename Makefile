@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/10/24 13:08:33 by sbalk            ###   ########.fr        #
+#    Updated: 2023/10/25 14:59:37 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ LIB_NAME	= libft.a
 MLX_DIR		= minilibx-linux/
 MLX_NAME	= libmlx.a
 CC			= cc
-CFLAGS		= -Werror -Wall -Wextra -fsanitize=address -g 
-# CFLAGS		= -Wall -Wextra -g
+CFLAGS		= -Werror -Wall -Wextra -fsanitize=address -g
+# CFLAGS		= -Werror -Wall -Wextra -g
 RM			= rm
 SRC_DIR		= src/
 OBJ_DIR		= obj/
@@ -44,6 +44,7 @@ SRC_FILES	=	main \
 				projection \
 				math \
 				check_map \
+				zoom \
 				
 
 SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))

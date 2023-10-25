@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/24 16:32:38 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/25 14:53:56 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,41 @@ typedef struct	s_line
 	int err;
 }				t_line;
 
-typedef struct	s_vec2
+typedef struct	s_vec2i
 {
 	int	x;
 	int	y;
+}				t_vec2i;
+
+typedef struct	s_vec2
+{
+	float	x;
+	float	y;
 }				t_vec2;
 
-typedef struct	s_vec3
+typedef struct	s_vec3i
 {
 	int	x;
 	int	y;
 	int	z;
+}				t_vec3i;
+
+typedef struct	s_vec3
+{
+	float	x;
+	float	y;
+	float	z;
 }				t_vec3;
 
 typedef struct	s_vert3d
 {
-	t_vec3	pos;
+	t_vec3i	pos;
 	int		color;
 }				t_vert3d;
 
 typedef struct	s_vert2d
 {
-	t_vec2	pos;
+	t_vec2i	pos;
 	int		color;
 }				t_vert2d;
 
@@ -64,7 +77,7 @@ typedef struct	s_data
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
-	t_vec2	win_size;
+	t_vec2i	win_size;
 	int		endian;
 }				t_data;
 
@@ -74,13 +87,13 @@ typedef struct	s_fdf
 	void		*win;
 	t_vert2d	**map;
 	t_vert3d	**input_map;
-	t_vec2		win_size;
-	t_vec2		map_size;
+	t_vec2i		win_size;
+	t_vec2i		map_size;
 	t_vec2		pivot;
 	int			cur_color;
 	int			bg_color;
 	int			default_color;
-	int			zoom;
+	float		zoom;
 	t_data		*img;
 
 }				t_fdf;
@@ -121,6 +134,7 @@ typedef struct	s_vars
 /* INIT */
 
 void	init_fdf(t_fdf *fdf);
+void	init_mlx(t_fdf *fdf);
 void	init_maps(t_fdf *fdf);
 
 /* Map parsing */
@@ -134,18 +148,18 @@ void	error_msg(t_fdf *fdf, char *msg, int use_errno, int shall_exit);
 
 /* DRAW */
 
-void	my_mlx_pixel_put(t_data *data, t_vec2 vec2, int color);
-void	draw_rect(t_data *data, t_vec2 start, t_vec2 end, int color);
-void	draw_background(t_data *data, t_vec2 size, int color);
-void	draw_line(t_data *data, t_vec2 start, t_vec2 end, int color);
-void	draw_point(t_data *data, t_vec2 pos, int size, int color);
+void	my_mlx_pixel_put(t_data *data, t_vec2i vec2, int color);
+void	draw_rect(t_data *data, t_vec2i start, t_vec2i end, int color);
+void	draw_background(t_data *data, t_vec2i size, int color);
+void	draw_line(t_data *data, t_vec2i start, t_vec2i end, int color);
+void	draw_point(t_data *data, t_vec2i pos, int size, int color);
 void	draw_cube(t_data *data, int size);
-// void	redraw(t_fdf *fdf);
 void	draw_mesh(t_fdf *fdf);
 
 /* KEY HANDLING */
 
-int		key_hook(int keycode, t_vars *vars);
+// int		key_hook(int keycode, t_vars *vars);
+int		key_hook(int keycode, t_fdf *fdf);
 int		mouse_hook(int keycode, void *param);
 void	setup_controls(t_fdf *fdf);
 void	mouse_click(int key, void *param);
@@ -156,14 +170,14 @@ double	deg_to_rad(int deg);
 
 /* PROJECTION */
 
-int	fit_zoom_to_windowsize(t_fdf *fdf);
+float	fit_zoom_to_windowsize(t_fdf *fdf);
 // void	set_2d_points_grid(t_fdf *fdf);
 void	project_iso(t_fdf *fdf);
-void	transform(t_fdf *fdf, t_vec2 direction);
+void	transform(t_fdf *fdf, t_vec2i direction);
 void	zoom(t_fdf *fdf, int zoom);
 
 /* MEMORY */
 
-void	free_fdf(t_fdf *fdf);
+void	free_everything(t_fdf *fdf);
 
 #endif
