@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:29:00 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/25 14:31:50 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/25 16:02:22 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 float	fit_zoom_to_windowsize(t_fdf *fdf)
 {
-	int	smallest_point;
+	int	lowest_point;
 	int	highest_point;
 	int	point;
 	int	i;
 	int	j;
 
-	smallest_point = 0;
+	lowest_point = 0;
 	highest_point = 0;
 	i = 0;
 	while (i < fdf->map_size.y)
@@ -29,16 +29,17 @@ float	fit_zoom_to_windowsize(t_fdf *fdf)
 		while (j < fdf->map_size.x)
 		{
 			point = fdf->map[i][j].pos.y;
-			if (point < smallest_point)
-				smallest_point = point;
+			if (point < lowest_point)
+				lowest_point = point;
 			else if (point > highest_point)
 				highest_point = point;
 			j++;
 		}
 		i++;
 	}
-	return ((float)fdf->win_size.y / (fdf->map_size.y
-			+ highest_point - smallest_point));
+	printf("Pivot.y = %f\n", fdf->pivot.y);
+	printf("Lowest Point = %i\n", highest_point);
+	return ((float)fdf->win_size.y / ((float)highest_point - lowest_point + highest_point) * 0.50);
 }
 
 void	zoom(t_fdf *fdf, int zoom)

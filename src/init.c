@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:35:08 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/25 14:28:15 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/25 15:38:28 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ void	init_fdf(t_fdf *fdf)
 
 void	init_maps(t_fdf *fdf)
 {
-	fdf->pivot.x = (fdf->map_size.x - 1) / 2;
-	fdf->pivot.y = (fdf->map_size.y - 1) / 2;
+	fdf->pivot.x = ((float)fdf->map_size.x - 1) / 2;
+	fdf->pivot.y = ((float)fdf->map_size.y - 1) / 2;
 	init_input_map(fdf);
 	init_map(fdf);
 }

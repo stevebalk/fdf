@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:36:07 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/25 14:31:45 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/25 16:47:19 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,29 @@ void	project_iso(t_fdf *fdf)
 	}
 }
 
+// void	project_iso(t_fdf *fdf)
+// {
+// 	int		i;
+// 	int		j;
+// 	float	_cos = cos(deg_to_rad(-30));
+// 	float	_sin = sin(deg_to_rad(-30));
+// 	t_vec3i	point;
+
+// 	i = 0;
+// 	while (i < fdf->map_size.y)
+// 	{
+// 		j = 0;
+// 		while (j < fdf->map_size.x)
+// 		{
+// 			point = fdf->input_map[i][j].pos;
+// 			fdf->map[i][j].pos.x = ft_round((point.x * _cos - point.y * _sin) * fdf->zoom);
+// 			fdf->map[i][j].pos.y = ft_round((fdf->zoom * (point.x * _sin + point.y * _cos) * deg_to_rad(30))  * fdf->zoom);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
+
 void	transform(t_fdf *fdf, t_vec2i direction)
 {
 	int	i;
@@ -54,3 +77,13 @@ void	transform(t_fdf *fdf, t_vec2i direction)
 		}
 	}
 }
+
+// void	update_projection(t_fdf *fdf)
+// {
+	
+// }
+
+// void	rotate_x(t_fdf *fdf, float rad)
+// {
+// 	float	
+// }
