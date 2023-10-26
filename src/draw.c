@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:28:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/25 12:48:22 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/26 15:26:01 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,82 +79,6 @@ void	draw_line(t_data *data, t_vec2i start, t_vec2i end, int color)
 		}
 	}
 }
-
-// void	draw_point(t_data *data, t_vec2 pos, int size, int color)
-// {
-// 	draw_rect(data, (t_vec2){pos.x - size / 2, pos.y - size / 2}, (t_vec2){pos.x + size / 2, pos.y + size / 2}, color);
-// }
-
-// void	draw_cube(t_data *data, int size)
-// {
-// 	t_vec2	**cube;
-// 	t_vec2	point;
-
-// 	cube = malloc(sizeof(t_vec2 *) * 2);
-// 	cube[0] = malloc(sizeof(t_vec2) * 4);
-// 	cube[1] = malloc(sizeof(t_vec2) * 4);
-
-// 	cube[0][0].x = 0;
-// 	cube[0][0].y = 0;
-// 	cube[0][1].x = size;
-// 	cube[0][1].y = 0;
-// 	cube[0][2].x = size;
-// 	cube[0][2].y = size;
-// 	cube[0][3].x = 0;
-// 	cube[0][3].y = size;
-
-// 	cube[1][0].x = 0;
-// 	cube[1][0].y = 0;
-// 	cube[1][1].x = size;
-// 	cube[1][1].y = 0;
-// 	cube[1][2].x = size;
-// 	cube[1][2].y = size;
-// 	cube[1][3].x = 0;
-// 	cube[1][3].y = size;
-
-// 	int		i;
-// 	int		j;
-
-// 	i = 0;
-// 	while (i < 2)
-// 	{
-// 		j = 0;
-// 		while (j < 4)
-// 		{
-// 			point = cube[i][j];
-// 			cube[i][j].x = ft_round((point.x - point.y) * 0.841 + (1920 / 2));
-// 			cube[i][j].y = ft_round((i * size) - ((point.x + point.y) * 0.5) + (1080 / 2));
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	printf("Cube:\n");
-// 	for (int i=0; i<2; i++)
-// 	{
-// 		for (int j=0; j<4; j++)
-// 		{
-// 			printf("x: %d y: %d", cube[i][j].x, cube[i][j].y);
-// 			printf("\n");
-// 		}
-// 		printf("\n");
-// 	}
-// 	i = 0;
-// 	while (i < 2)
-// 	{
-// 		j = 0;
-// 		while (j < 3)
-// 		{
-// 			draw_line(data, cube[i][j], cube[i][j + 1], WHITE);
-// 			j++;
-// 		}
-// 		draw_line(data, cube[i][0], cube[i][3], WHITE);
-// 		i++;
-// 	}
-// 	i = -1;
-// 	while (i++ < 4)
-// 		draw_line(data, cube[0][i], cube[1][i], YELLOW);
-// 	// draw_line(data, (t_vec2){0,0}, (t_vec2){1920, 1080}, WHITE);
-// }
 
 void	draw_mesh(t_fdf *fdf)
 {

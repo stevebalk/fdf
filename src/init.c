@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:35:08 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/25 15:38:28 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/26 15:42:58 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,13 @@ void	init_fdf(t_fdf *fdf)
 	fdf->default_color = WHITE;
 	fdf->cur_color = fdf->default_color;
 	fdf->zoom = 1;
+	fdf->zoom_mod = ZOOM_MOD;
+	fdf->min_zoom = 1.0;
+	fdf->max_zoom = 30.0;
+	fdf->angle = (t_vec3){0.0, 0.0, 0.0};
+	fdf->rotation_angle = deg_to_rad(ROTATION_ANGLE);
+	fdf->win_center = (t_vec2i) {fdf->win_size.x / 2, fdf->win_size.y / 2};
+	fdf->offset = (t_vec2i){0, 0};
 }
 
 void	init_maps(t_fdf *fdf)

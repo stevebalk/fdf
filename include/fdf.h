@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/25 14:53:56 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/26 15:06:47 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@
 # define FDF_H
 
 /* Windowsize */
-#define WIDTH	1920
-#define HEIGHT	1080
+#define WIDTH			1920
+#define HEIGHT			1080
+
+#define ROTATION_ANGLE	5
+#define ZOOM_MOD		1.5
 
 typedef struct	s_line
 {
@@ -61,7 +64,7 @@ typedef struct	s_vec3
 
 typedef struct	s_vert3d
 {
-	t_vec3i	pos;
+	t_vec3	pos;
 	int		color;
 }				t_vert3d;
 
@@ -94,8 +97,14 @@ typedef struct	s_fdf
 	int			bg_color;
 	int			default_color;
 	float		zoom;
+	float		zoom_mod;
+	float		min_zoom;
+	float		max_zoom;
 	t_data		*img;
-
+	t_vec3		angle;
+	float		rotation_angle;
+	t_vec2i		win_center;
+	t_vec2i		offset;
 }				t_fdf;
 
 typedef struct	s_vars
@@ -160,7 +169,8 @@ void	draw_mesh(t_fdf *fdf);
 
 // int		key_hook(int keycode, t_vars *vars);
 int		key_hook(int keycode, t_fdf *fdf);
-int		mouse_hook(int keycode, void *param);
+int	mouse_hook(int keycode, int x, int y, t_fdf *fdf);
+// int		mouse_hook(int keycode, void *param);
 void	setup_controls(t_fdf *fdf);
 void	mouse_click(int key, void *param);
 
@@ -174,7 +184,12 @@ float	fit_zoom_to_windowsize(t_fdf *fdf);
 // void	set_2d_points_grid(t_fdf *fdf);
 void	project_iso(t_fdf *fdf);
 void	transform(t_fdf *fdf, t_vec2i direction);
-void	zoom(t_fdf *fdf, int zoom);
+void	zoom(t_fdf *fdf, int keycode);
+void	apply_zoom(t_fdf *fdf, float zoom_mod);
+void	rotate_x(t_vec3 *vec, float rad);
+void	rotate_y(t_vec3 *vec, float rad);
+void	rotate_z(t_vec3 *vec, float rad);
+void	rotate(t_fdf *fdf);
 
 /* MEMORY */
 

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:41:41 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/25 14:15:05 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/26 15:47:32 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	print_input_map(t_fdf *fdf)
 	{
 		while (j < fdf->map_size.x)
 		{
-			printf("(%i, %i, %i, %X), ", fdf->input_map[i][j].pos.x, fdf->input_map[i][j].pos.y, fdf->input_map[i][j].pos.z, fdf->input_map[i][j].color);
+			// printf("(%i, %i, %i, %X), ", fdf->input_map[i][j].pos.x, fdf->input_map[i][j].pos.y, fdf->input_map[i][j].pos.z, fdf->input_map[i][j].color);
+			printf("(%f, %f, %f, %X), ", fdf->input_map[i][j].pos.x, fdf->input_map[i][j].pos.y, fdf->input_map[i][j].pos.z, fdf->input_map[i][j].color);
 			j++;
 		}
 		printf("\n");
@@ -67,18 +68,20 @@ int	main(int argc, char *argv[])
 	check_map_format(&fdf, argv[1]);
 	init_maps(&fdf);
 	read_map(&fdf, argv[1]);
+	// print_input_map(&fdf);
 	init_mlx(&fdf);
 	draw_background(fdf.img, fdf.win_size, fdf.bg_color);
 	project_iso(&fdf);
 	fdf.zoom = fit_zoom_to_windowsize(&fdf);
+	// fdf.zoom = 5;
+	rotate(&fdf);
 	project_iso(&fdf);
-	transform(&fdf, (t_vec2i) {fdf.win_size.x / 2, fdf.win_size.y / 2});
+	transform(&fdf, fdf.offset);
 
 	draw_mesh(&fdf);
-	
-	
 	/* Keyhook */
-	mlx_key_hook(fdf.win, key_hook, &fdf);
+	mlx_key_hook(fdf.win, &key_hook, &fdf);
+	mlx_mouse_hook(fdf.win, &mouse_hook, &fdf);
 	// mlx_mouse_hook(fdf.win, mouse_hook, &fdf);
 	// setup_controls(&fdf);
 	mlx_put_image_to_window(fdf.mlx, fdf.win, fdf.img->img, 0, 0);

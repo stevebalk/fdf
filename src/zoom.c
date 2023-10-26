@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:29:00 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/25 16:02:22 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/26 15:57:59 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,24 @@ float	fit_zoom_to_windowsize(t_fdf *fdf)
 	return ((float)fdf->win_size.y / ((float)highest_point - lowest_point + highest_point) * 0.50);
 }
 
-void	zoom(t_fdf *fdf, int zoom)
+void	zoom(t_fdf *fdf, int keycode)
 {
-	int	i;
-	int	j;
-
-	if (zoom > 0)
+	if (keycode == MOUSE_WHEEL_UP)
 	{
-		i = 0;
-		while (i < fdf->map_size.x)
+		if (fdf->zoom < fdf->max_zoom)
 		{
-			j = 0;
-			while (j < fdf->map_size.y)
-			{
-				fdf->map[j][i].pos.x *= zoom;
-				fdf->map[j][i].pos.y *= zoom;
-				j++;
-			}
-			i++;
+			fdf->offset.x *= fdf->zoom_mod;
+			fdf->offset.y *= fdf->zoom_mod;
+			fdf->zoom *= fdf->zoom_mod;
+		}
+	}
+	if (keycode == MOUSE_WHEEL_DOWN)
+	{
+		if (fdf->zoom > fdf->min_zoom)
+		{
+			fdf->offset.x /= fdf->zoom_mod;
+			fdf->offset.y /= fdf->zoom_mod;
+			fdf->zoom /= fdf->zoom_mod;
 		}
 	}
 }
