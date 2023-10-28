@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:35:44 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/26 16:06:26 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/27 17:00:10 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ int	key_hook(int keycode, t_fdf *fdf)
 		fdf->angle.z = fdf->rotation_angle;
 	if (keycode == XK_Right)
 		fdf->angle.z = -fdf->rotation_angle;
+	if (keycode == XK_KP_Add)
+		change_height(fdf, 1.0);
+	if (keycode == XK_KP_Subtract)
+		change_height(fdf, -1.0);
 	if (fdf)
 		printf("Keycode: %d\n", keycode);
 	if (keycode == XK_w)

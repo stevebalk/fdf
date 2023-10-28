@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:37:15 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/25 01:42:54 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/27 17:13:01 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ t_vert3d	parse_chunk(t_fdf *fdf, char *chunk, int row, int column)
 	vert.pos.x = column - fdf->pivot.x;
 	vert.pos.y = row - fdf->pivot.y;
 	vert.pos.z = ft_atoi(chunk);
-	// ft_printf("Chunk: X: %i, Y: %i, %s\n", column, row, chunk);
+	vert.changeable = 0;
+	if (vert.pos.z != 0.0)
+		vert.changeable = 1;
 	str = chunk;
 	while (*str == ' ' || *str == '-' || *str == '+')
 		str++;

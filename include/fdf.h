@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/26 15:06:47 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/27 17:26:09 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct	s_vert3d
 {
 	t_vec3	pos;
 	int		color;
+	char	changeable;
 }				t_vert3d;
 
 typedef struct	s_vert2d
@@ -105,6 +106,7 @@ typedef struct	s_fdf
 	float		rotation_angle;
 	t_vec2i		win_center;
 	t_vec2i		offset;
+	float			party;
 }				t_fdf;
 
 typedef struct	s_vars
@@ -160,7 +162,7 @@ void	error_msg(t_fdf *fdf, char *msg, int use_errno, int shall_exit);
 void	my_mlx_pixel_put(t_data *data, t_vec2i vec2, int color);
 void	draw_rect(t_data *data, t_vec2i start, t_vec2i end, int color);
 void	draw_background(t_data *data, t_vec2i size, int color);
-void	draw_line(t_data *data, t_vec2i start, t_vec2i end, int color);
+void	draw_line(t_fdf *fdf, t_vec2i start, t_vec2i end, int color);
 void	draw_point(t_data *data, t_vec2i pos, int size, int color);
 void	draw_cube(t_data *data, int size);
 void	draw_mesh(t_fdf *fdf);
@@ -177,6 +179,10 @@ void	mouse_click(int key, void *param);
 /* MATH */
 
 double	deg_to_rad(int deg);
+
+/* Manipulation */
+
+void	change_height(t_fdf *fdf, float value);
 
 /* PROJECTION */
 

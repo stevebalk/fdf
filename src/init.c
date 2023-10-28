@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:35:08 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/26 15:42:58 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/27 18:23:16 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	init_mlx(t_fdf *fdf)
 			&(fdf->img->bits_per_pixel),
 			&(fdf->img->line_length), &(fdf->img->endian));
 	fdf->img->win_size = fdf->win_size;
+	printf("Line length: %d\n", fdf->img->line_length / 4);
 }
 
 void	init_fdf(t_fdf *fdf)
@@ -85,7 +86,7 @@ void	init_fdf(t_fdf *fdf)
 	fdf->map_size = (t_vec2i){0, 0};
 	fdf->win_size.x = WIDTH;
 	fdf->win_size.y = HEIGHT;
-	fdf->bg_color = BLACK;
+	fdf->bg_color = 0x19;
 	fdf->default_color = WHITE;
 	fdf->cur_color = fdf->default_color;
 	fdf->zoom = 1;
@@ -96,6 +97,7 @@ void	init_fdf(t_fdf *fdf)
 	fdf->rotation_angle = deg_to_rad(ROTATION_ANGLE);
 	fdf->win_center = (t_vec2i) {fdf->win_size.x / 2, fdf->win_size.y / 2};
 	fdf->offset = (t_vec2i){0, 0};
+	fdf->party = 1;
 }
 
 void	init_maps(t_fdf *fdf)

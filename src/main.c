@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:41:41 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/26 15:47:32 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/27 18:24:02 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,29 @@ void	print_input_map(t_fdf *fdf)
 	}
 }
 
-// void	init_map(t_fdf *fdf)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	fdf->map = ft_calloc(fdf->map_size.y + 1, sizeof(t_vert2d *));
-// 	if (fdf->map == NULL)
-// 		error_msg(fdf, "Error: ft_calloc failed" , 1, 1);
-// 	while (i < fdf->map_size.x)
-// 	{
-// 		fdf->map[i] = ft_calloc(fdf->map_size.x, sizeof(t_vert2d));
-// 		if (fdf->map[i] == NULL)
-// 			error_msg(fdf, "Error: ft_calloc failed" , 1, 1);
-// 		i++;
-// 	}
-// }
-
-// mlx_new_image maybe buffer possible? overlay?
+int	party(t_fdf *fdf)
+{
+	// usleep(100000);
+	fdf->angle.z = deg_to_rad(5);
+	// fdf->angle.y = deg_to_rad(5);
+	// if (fdf->party == 1)
+	// {
+	// 	change_height(fdf, fdf->party);
+	// 	fdf->party = -1;
+	// }
+	// else
+	// {
+	// 	change_height(fdf, fdf->party);
+	// 	fdf->party = 1;
+	// }
+	rotate(fdf);
+	project_iso(fdf);
+	transform(fdf, fdf->offset);
+	draw_background(fdf->img, fdf->win_size, fdf->bg_color);
+	draw_mesh(fdf);
+	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
+	return (0);
+}
 
 int	main(int argc, char *argv[])
 {
@@ -73,18 +78,21 @@ int	main(int argc, char *argv[])
 	draw_background(fdf.img, fdf.win_size, fdf.bg_color);
 	project_iso(&fdf);
 	fdf.zoom = fit_zoom_to_windowsize(&fdf);
+	fdf.angle.z = deg_to_rad(-90);
 	// fdf.zoom = 5;
 	rotate(&fdf);
 	project_iso(&fdf);
 	transform(&fdf, fdf.offset);
 
 	draw_mesh(&fdf);
+	// draw_line(fdf.img, (t_vec2i){fdf.win_size.x, 200}, (t_vec2i){fdf.win_size.x, fdf.win_size.y - 1}, RED);
 	/* Keyhook */
 	mlx_key_hook(fdf.win, &key_hook, &fdf);
 	mlx_mouse_hook(fdf.win, &mouse_hook, &fdf);
 	// mlx_mouse_hook(fdf.win, mouse_hook, &fdf);
 	// setup_controls(&fdf);
 	mlx_put_image_to_window(fdf.mlx, fdf.win, fdf.img->img, 0, 0);
+	mlx_loop_hook(fdf.mlx, &party, &fdf);
 	mlx_loop(fdf.mlx);
 
 	return (0);

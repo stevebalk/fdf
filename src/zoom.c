@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:29:00 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/26 15:57:59 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/28 16:55:17 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ float	fit_zoom_to_windowsize(t_fdf *fdf)
 		}
 		i++;
 	}
-	printf("Pivot.y = %f\n", fdf->pivot.y);
-	printf("Lowest Point = %i\n", highest_point);
 	return ((float)fdf->win_size.y / ((float)highest_point - lowest_point + highest_point) * 0.50);
 }
 

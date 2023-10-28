@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 16:29:21 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/25 01:01:03 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/28 16:50:38 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	get_column_length(t_fdf *fdf, char *line)
 	int	columns;
 	int	found_space;
 
-	line[ft_strlen(line) - 1] = '\0';
+	if (line[ft_strlen(line) - 1] == '\n')
+		line[ft_strlen(line) - 1] = '\0';
 	columns = 0;
 	found_space = 1;
 	while (*line)
@@ -41,7 +42,6 @@ int	get_column_length(t_fdf *fdf, char *line)
 			found_space = 1;
 		line++;
 	}
-	ft_printf("Columns: %i\n", columns);
 	if (columns == 0)
 	{
 		free(line);
