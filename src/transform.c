@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math.c                                             :+:      :+:    :+:   */
+/*   transform.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/28 15:55:54 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/29 16:31:01 by sbalk            ###   ########.fr       */
+/*   Created: 2023/10/29 16:22:11 by sbalk             #+#    #+#             */
+/*   Updated: 2023/10/29 16:54:57 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Convert from degrees to radiant */
-double	deg_to_rad(double deg)
-{
-	return (deg * 0.01745329f);
-}
+#include "fdf.h"
 
-/* Convert from radiant to degrees */
-double	rad_to_degree(double rad)
+/* Move the mesh in the given direction */
+void	transform(t_fdf *fdf, t_vec2i direction)
 {
-	return (rad * 57.29578f);
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < fdf->map_size.x)
+	{
+		j = 0;
+		while (j < fdf->map_size.y)
+		{
+			fdf->map[j][i].pos.x += fdf->win_center.x + direction.x;
+			fdf->map[j][i].pos.y += fdf->win_center.y + direction.y;
+			j++;
+		}
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:35:08 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/27 18:23:16 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/29 16:32:05 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void	init_fdf(t_fdf *fdf)
 	fdf->rotation_angle = deg_to_rad(ROTATION_ANGLE);
 	fdf->win_center = (t_vec2i) {fdf->win_size.x / 2, fdf->win_size.y / 2};
 	fdf->offset = (t_vec2i){0, 0};
-	fdf->party = 1;
 }
 
 void	init_maps(t_fdf *fdf)

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/29 12:50:50 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/29 16:36:30 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ typedef struct	s_fdf
 	float		rotation_angle;
 	t_vec2i		win_center;
 	t_vec2i		offset;
-	float			party;
 }				t_fdf;
 
 /*Struct for keyhook */
@@ -191,8 +190,6 @@ void	draw_cube(t_data *data, int size);
 void	draw_mesh(t_fdf *fdf);
 
 void	draw_line_gradient(t_fdf *fdf, t_vert2d start, t_vert2d end);
-void draw_gradient(t_fdf *fdf, t_vert3d start, t_vert3d end, int colorStart, int colorEnd);
-// void	draw_gradient(t_fdf *fdf, t_vec2i start, t_vec2i end, int colorStart, int colorEnd);
 
 /* KEY HANDLING */
 
@@ -205,25 +202,22 @@ void	mouse_click(int key, void *param);
 
 /* MATH */
 
-double	deg_to_rad(int deg);
+double	deg_to_rad(double deg);
+double	rad_to_degree(double rad);
 
 /* Manipulation */
 
+void	transform(t_fdf *fdf, t_vec2i direction);
+void	rotate(t_fdf *fdf);
 void	change_height(t_fdf *fdf, float value);
+void	zoom(t_fdf *fdf, int keycode);
+void	apply_zoom(t_fdf *fdf, float zoom_mod);
 
 /* PROJECTION */
 
 float	fit_zoom_to_windowsize(t_fdf *fdf);
-// void	set_2d_points_grid(t_fdf *fdf);
 void	project_iso(t_fdf *fdf);
 void	project_flat(t_fdf *fdf);
-void	transform(t_fdf *fdf, t_vec2i direction);
-void	zoom(t_fdf *fdf, int keycode);
-void	apply_zoom(t_fdf *fdf, float zoom_mod);
-void	rotate_x(t_vec3 *vec, float rad);
-void	rotate_y(t_vec3 *vec, float rad);
-void	rotate_z(t_vec3 *vec, float rad);
-void	rotate(t_fdf *fdf);
 
 /* MEMORY */
 

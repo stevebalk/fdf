@@ -6,16 +6,17 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:37:15 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/28 18:06:47 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/29 16:27:21 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/* Transforms hex to int value, return -1 if invalid hex value*/
 int	hex_to_int(char *hex_string)
 {
-	int result;
-	int i;
+	int	result;
+	int	i;
 
 	result = 0;
 	i = 0;
@@ -32,9 +33,10 @@ int	hex_to_int(char *hex_string)
 			return (-1);
 		i++;
 	}
-	return result;
+	return (result);
 }
 
+/* Parse color, for example "0xFFBBDDFF" */
 int	parse_color(t_fdf *fdf, char *str)
 {
 	int	color;
@@ -52,7 +54,7 @@ int	parse_color(t_fdf *fdf, char *str)
 	return (color);
 }
 
-/* Parse one chunk, like 2,0xFF45F500 */
+/* Parse one chunk, for example "2,0xFFFF00" */
 t_vert3d	parse_chunk(t_fdf *fdf, char *chunk, int row, int column)
 {
 	char		*str;
@@ -94,10 +96,11 @@ void	parse_line(t_fdf *fdf, char *line, int row)
 		fdf->map[row][i].color = fdf->input_map[row][i].color;
 		i++;
 	}
-	ft_free_array((void**) chunks);
+	ft_free_array((void **) chunks);
 }
 
-void	fill_rows(t_fdf *fdf, char *filename)
+/* Read the mapfile and check if it's in the correct format*/
+void	read_map(t_fdf *fdf, char *filename)
 {
 	int		row;
 	int		fd;
@@ -116,10 +119,4 @@ void	fill_rows(t_fdf *fdf, char *filename)
 		row++;
 	}
 	close(fd);
-}
-
-/* Read the mapfile and check if it's in the correct format*/
-void read_map(t_fdf *fdf, char *filename)
-{
-	fill_rows(fdf, filename);
 }

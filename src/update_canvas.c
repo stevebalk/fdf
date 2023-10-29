@@ -6,13 +6,13 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 13:15:38 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/26 13:31:02 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/29 16:55:33 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	update_rotation(t_fdf *fdf)
+void	update_canvas(t_fdf *fdf)
 {
 	if (fdf->angle.x != 0)
 		return;

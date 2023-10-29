@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:41:41 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/29 12:55:00 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/29 16:43:18 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,6 @@ int	party(t_fdf *fdf)
 {
 	// usleep(100000);
 	fdf->angle.z = deg_to_rad(5);
-	// fdf->angle.y = deg_to_rad(5);
-	// if (fdf->party == 1)
-	// {
-	// 	change_height(fdf, fdf->party);
-	// 	fdf->party = -1;
-	// }
-	// else
-	// {
-	// 	change_height(fdf, fdf->party);
-	// 	fdf->party = 1;
-	// }
 	rotate(fdf);
 	project_iso(fdf);
 	transform(fdf, fdf->offset);
@@ -86,7 +75,7 @@ int	main(int argc, char *argv[])
 	mlx_key_hook(fdf.win, &key_hook, &fdf);
 	mlx_mouse_hook(fdf.win, &mouse_hook, &fdf);
 	mlx_put_image_to_window(fdf.mlx, fdf.win, fdf.img->img, 0, 0);
-	// mlx_loop_hook(fdf.mlx, &party, &fdf);
+	mlx_loop_hook(fdf.mlx, &party, &fdf);
 	mlx_loop(fdf.mlx);
 
 	return (0);
