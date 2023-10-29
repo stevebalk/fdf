@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/10/27 16:51:55 by sbalk            ###   ########.fr        #
+#    Updated: 2023/10/29 12:35:31 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,8 @@ WHITE = \033[0;97m
 
 SRC_FILES	=	main \
 				draw \
+				draw_line \
+				draw_line_gradient \
 				error \
 				init \
 				key_handling \

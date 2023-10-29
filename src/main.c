@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:41:41 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/27 18:24:02 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/29 12:55:00 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,26 +73,20 @@ int	main(int argc, char *argv[])
 	check_map_format(&fdf, argv[1]);
 	init_maps(&fdf);
 	read_map(&fdf, argv[1]);
-	// print_input_map(&fdf);
 	init_mlx(&fdf);
 	draw_background(fdf.img, fdf.win_size, fdf.bg_color);
 	project_iso(&fdf);
 	fdf.zoom = fit_zoom_to_windowsize(&fdf);
 	fdf.angle.z = deg_to_rad(-90);
-	// fdf.zoom = 5;
 	rotate(&fdf);
 	project_iso(&fdf);
 	transform(&fdf, fdf.offset);
 
 	draw_mesh(&fdf);
-	// draw_line(fdf.img, (t_vec2i){fdf.win_size.x, 200}, (t_vec2i){fdf.win_size.x, fdf.win_size.y - 1}, RED);
-	/* Keyhook */
 	mlx_key_hook(fdf.win, &key_hook, &fdf);
 	mlx_mouse_hook(fdf.win, &mouse_hook, &fdf);
-	// mlx_mouse_hook(fdf.win, mouse_hook, &fdf);
-	// setup_controls(&fdf);
 	mlx_put_image_to_window(fdf.mlx, fdf.win, fdf.img->img, 0, 0);
-	mlx_loop_hook(fdf.mlx, &party, &fdf);
+	// mlx_loop_hook(fdf.mlx, &party, &fdf);
 	mlx_loop(fdf.mlx);
 
 	return (0);

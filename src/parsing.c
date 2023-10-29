@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:37:15 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/27 17:13:01 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/28 18:06:47 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	parse_line(t_fdf *fdf, char *line, int row)
 	while (i < size)
 	{
 		fdf->input_map[row][i] = parse_chunk(fdf, chunks[i], row, i);
+		fdf->map[row][i].color = fdf->input_map[row][i].color;
 		i++;
 	}
 	ft_free_array((void**) chunks);
