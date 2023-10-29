@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:35:44 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/27 17:00:10 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/29 18:13:42 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,13 @@ int	key_hook(int keycode, t_fdf *fdf)
 		fdf->offset.x -= 50;
 	if (keycode == XK_d)
 		fdf->offset.x += 50;
-	rotate(fdf);
-	project_iso(fdf);
-	transform(fdf, fdf->offset);
-	draw_background(fdf->img, fdf->win_size, fdf->bg_color);
-	draw_mesh(fdf);
-	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
+	// rotate(fdf);
+	// project_iso(fdf);
+	// transform(fdf, fdf->offset);
+	// draw_background(fdf->img, fdf->win_size, fdf->bg_color);
+	// draw_mesh(fdf);
+	// mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
+	update_canvas(fdf);
 	return (0);
 }
 
@@ -54,10 +55,11 @@ int	mouse_hook(int keycode, int x, int y, t_fdf *fdf)
 		printf("Keycode(Mouse): %d\n", keycode);
 	if (keycode == MOUSE_WHEEL_UP || keycode == MOUSE_WHEEL_DOWN)
 		zoom(fdf, keycode);
-	project_iso(fdf);
-	transform(fdf, fdf->offset);
-	draw_background(fdf->img, fdf->win_size, fdf->bg_color);
-	draw_mesh(fdf);
-	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
+	// project_iso(fdf);
+	// transform(fdf, fdf->offset);
+	// draw_background(fdf->img, fdf->win_size, fdf->bg_color);
+	// draw_mesh(fdf);
+	// mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
+	update_canvas(fdf);
 	return (0);
 }

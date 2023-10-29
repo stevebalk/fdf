@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:28:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/29 12:40:28 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/29 20:49:26 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,18 @@ void	draw_mesh(t_fdf *fdf)
 		{
 			if (x != 0)
 			{
-				// if (fdf->map[x][y].color != fdf->map[x - 1][y].color)
-				// 	draw_line_gradient(fdf, fdf->map[x][y], fdf->map[x - 1][y]);
-				// else
+				if (fdf->map[x][y].color != fdf->map[x - 1][y].color)
+					draw_line_gradient(fdf, fdf->map[x][y], fdf->map[x - 1][y]);
+				else
 					draw_line(fdf, fdf->map[x][y].pos,
 						fdf->map[x - 1][y].pos, fdf->input_map[x][y].color);
 
 			}
 			if (y != 0)
 			{
-				// if (fdf->map[x][y].color != fdf->map[x][y - 1].color)
-				// 	draw_line_gradient(fdf, fdf->map[x][y], fdf->map[x][y - 1]);
-				// else
+				if (fdf->map[x][y].color != fdf->map[x][y - 1].color)
+					draw_line_gradient(fdf, fdf->map[x][y], fdf->map[x][y - 1]);
+				else
 					draw_line(fdf, fdf->map[x][y].pos,
 						fdf->map[x][y - 1].pos, fdf->input_map[x][y].color);
 			}

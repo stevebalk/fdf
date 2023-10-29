@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:41:41 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/29 16:43:18 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/30 00:34:16 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ int	party(t_fdf *fdf)
 {
 	// usleep(100000);
 	fdf->angle.z = deg_to_rad(5);
-	rotate(fdf);
-	project_iso(fdf);
-	transform(fdf, fdf->offset);
-	draw_background(fdf->img, fdf->win_size, fdf->bg_color);
-	draw_mesh(fdf);
-	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
+	// rotate(fdf);
+	// project_iso(fdf);
+	// transform(fdf, fdf->offset);
+	// draw_background(fdf->img, fdf->win_size, fdf->bg_color);
+	update_canvas(fdf);
+	// draw_mesh(fdf);
+	// mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
 	return (0);
 }
 
@@ -63,19 +64,12 @@ int	main(int argc, char *argv[])
 	init_maps(&fdf);
 	read_map(&fdf, argv[1]);
 	init_mlx(&fdf);
-	draw_background(fdf.img, fdf.win_size, fdf.bg_color);
-	project_iso(&fdf);
+	update_canvas(&fdf);
 	fdf.zoom = fit_zoom_to_windowsize(&fdf);
 	fdf.angle.z = deg_to_rad(-90);
-	rotate(&fdf);
-	project_iso(&fdf);
-	transform(&fdf, fdf.offset);
-
-	draw_mesh(&fdf);
+	update_canvas(&fdf);
 	mlx_key_hook(fdf.win, &key_hook, &fdf);
 	mlx_mouse_hook(fdf.win, &mouse_hook, &fdf);
-	mlx_put_image_to_window(fdf.mlx, fdf.win, fdf.img->img, 0, 0);
-	mlx_loop_hook(fdf.mlx, &party, &fdf);
 	mlx_loop(fdf.mlx);
 
 	return (0);

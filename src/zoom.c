@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:29:00 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/28 16:55:17 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/29 20:26:59 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ float	fit_zoom_to_windowsize(t_fdf *fdf)
 	int	i;
 	int	j;
 
-	lowest_point = 0;
-	highest_point = 0;
+	lowest_point = fdf->map[0][0].pos.y;
+	highest_point = fdf->map[0][0].pos.y;
 	i = 0;
 	while (i < fdf->map_size.y)
 	{
@@ -37,7 +37,7 @@ float	fit_zoom_to_windowsize(t_fdf *fdf)
 		}
 		i++;
 	}
-	return ((float)fdf->win_size.y / ((float)highest_point - lowest_point + highest_point) * 0.50);
+	return ((float)fdf->win_size.y / ((float)highest_point - lowest_point) * 0.50);
 }
 
 void	zoom(t_fdf *fdf, int keycode)

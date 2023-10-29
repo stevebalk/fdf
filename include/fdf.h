@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/29 16:36:30 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/29 20:52:37 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@
 # define FDF_H
 
 /* Windowsize */
-#define WIDTH			1024
-#define HEIGHT			768
+// #define WIDTH			1024
+// #define HEIGHT			768
+#define WIDTH			1920
+#define HEIGHT			1080
 
 #define ROTATION_ANGLE	5
 #define ZOOM_MOD		1.5
@@ -188,6 +190,7 @@ void	draw_line(t_fdf *fdf, t_vec2i start, t_vec2i end, int color);
 void	draw_point(t_data *data, t_vec2i pos, int size, int color);
 void	draw_cube(t_data *data, int size);
 void	draw_mesh(t_fdf *fdf);
+void	update_canvas(t_fdf *fdf);
 
 void	draw_line_gradient(t_fdf *fdf, t_vert2d start, t_vert2d end);
 
@@ -209,6 +212,9 @@ double	rad_to_degree(double rad);
 
 void	transform(t_fdf *fdf, t_vec2i direction);
 void	rotate(t_fdf *fdf);
+void	rotate_x(t_vec3 *vec, float rad);
+void	rotate_y(t_vec3 *vec, float rad);
+void	rotate_z(t_vec3 *vec, float rad);
 void	change_height(t_fdf *fdf, float value);
 void	zoom(t_fdf *fdf, int keycode);
 void	apply_zoom(t_fdf *fdf, float zoom_mod);

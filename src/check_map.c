@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 16:29:21 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/28 16:50:38 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/29 20:39:32 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_file_integrity(t_fdf *fdf, char *filename)
 }
 
 /* Counts elements in one line seperated by space */
-int	get_column_length(t_fdf *fdf, char *line)
+int	get_line_elements(t_fdf *fdf, char *line)
 {
 	int	columns;
 	int	found_space;
@@ -54,9 +54,10 @@ int	get_column_length(t_fdf *fdf, char *line)
 if line is correctly formated */
 void	line_check(t_fdf *fdf, char *line)
 {
+	printf("Column length: %i\n", fdf->map_size.x);
 	if (fdf->map_size.x == 0)
-		fdf->map_size.x = get_column_length(fdf, line);
-	else if (get_column_length(fdf, line) != fdf->map_size.x)
+		fdf->map_size.x = get_line_elements(fdf, line);
+	else if (get_line_elements(fdf, line) != fdf->map_size.x)
 	{
 		free(line);
 		error_msg(fdf, "Error: Wrong line length.", 1, 1);

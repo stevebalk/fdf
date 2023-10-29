@@ -6,14 +6,14 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:17:22 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/29 16:21:42 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/29 17:13:10 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 /* Rotate vector3 around x axis */
-static void	rotate_x(t_vec3 *vec, float rad)
+void	rotate_x(t_vec3 *vec, float rad)
 {
 	float	old_y;
 
@@ -23,7 +23,7 @@ static void	rotate_x(t_vec3 *vec, float rad)
 }
 
 /* Rotate vector3 around y axis */
-static void	rotate_y(t_vec3 *vec, float rad)
+void	rotate_y(t_vec3 *vec, float rad)
 {
 	float	old_x;
 
@@ -33,7 +33,7 @@ static void	rotate_y(t_vec3 *vec, float rad)
 }
 
 /* Rotate vector3 around z axis */
-static void	rotate_z(t_vec3 *vec, float rad)
+void	rotate_z(t_vec3 *vec, float rad)
 {
 	float	old_x;
 	float	old_y;
