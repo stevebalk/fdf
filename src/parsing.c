@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:37:15 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/29 16:27:21 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/30 14:01:53 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_vert3d	parse_chunk(t_fdf *fdf, char *chunk, int row, int column)
 		str++;
 	while (*str >= '0' && *str <= '9')
 		str++;
-	if (*str == '\0' || !ft_strncmp(str, ",0x", 3) == 0)
+	if (*str == '\0' || !(ft_strncmp(str, ",0x", 3) == 0))
 		vert.color = fdf->default_color;
 	else
 		vert.color = parse_color(fdf, str + 3);

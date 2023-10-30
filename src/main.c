@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:41:41 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/30 00:34:16 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/30 15:27:18 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	main(int argc, char *argv[])
 	update_canvas(&fdf);
 	mlx_key_hook(fdf.win, &key_hook, &fdf);
 	mlx_mouse_hook(fdf.win, &mouse_hook, &fdf);
+	// mlx_loop_hook(fdf.mlx, &party, &fdf);
 	mlx_loop(fdf.mlx);
 
 	return (0);

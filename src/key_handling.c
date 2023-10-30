@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:35:44 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/29 18:13:42 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/30 15:31:17 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ int	key_hook(int keycode, t_fdf *fdf)
 		fdf->angle.z = fdf->rotation_angle;
 	if (keycode == XK_Right)
 		fdf->angle.z = -fdf->rotation_angle;
+	if (keycode == XK_Up)
+		fdf->angle.x = fdf->rotation_angle;
+	if (keycode == XK_Down)
+		fdf->angle.x = -fdf->rotation_angle;
+	if (keycode == XK_k)
+		fdf->angle.y = fdf->rotation_angle;
+	if (keycode == XK_l)
+		fdf->angle.y = -fdf->rotation_angle;
 	if (keycode == XK_KP_Add)
 		change_height(fdf, 1.0);
 	if (keycode == XK_KP_Subtract)
