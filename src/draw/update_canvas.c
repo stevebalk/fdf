@@ -6,13 +6,13 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 13:15:38 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 21:49:55 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/31 22:53:18 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	apply_transformations(t_fdf *fdf, t_vec3 *src, t_vec2i *dst)
+void	apply_transformations(t_fdf *fdf, t_vec3 *src, t_vec2i *dst)
 {
 	t_vec3	point;
 

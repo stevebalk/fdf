@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/10/31 21:30:05 by sbalk            ###   ########.fr        #
+#    Updated: 2023/10/31 22:14:51 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,11 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 SRC_FILES	=	main \
-				init/init_1 \
-				init/init_2 \
+				init/init_fdf \
+				init/init_keyhooks \
+				init/init_maps \
+				init/init_mlx \
+				init/init_projections \
 				parsing/parsing \
 				parsing/check_map \
 				user_input/key_handling \

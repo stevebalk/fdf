@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 21:31:46 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/31 22:53:47 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ typedef struct		s_fdf
 	void			*mlx;
 	void			*win;
 	t_data			*img;
+	t_data			*hud;
 	t_vert2d		**map;
 	t_vert3d		**input_map;
 	t_vec2i			win_size;
@@ -223,6 +224,7 @@ int		change_rotation(float *axis, float value);
 int		zoom_in(t_fdf *fdf, float value);
 int		zoom_out(t_fdf *fdf, float value);
 float	fit_zoom_to_windowsize(t_fdf *fdf);
+void	apply_transformations(t_fdf *fdf, t_vec3 *src, t_vec2i *dst);
 
 /* PROJECTION */
 
