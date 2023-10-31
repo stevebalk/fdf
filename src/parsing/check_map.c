@@ -6,11 +6,27 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 16:29:21 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 13:01:40 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/31 21:52:14 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+/* Check if map extension is correct */
+void	check_map_extension(t_fdf *fdf, char *filename, char *extension)
+{
+	size_t	len_name;
+	size_t	len_ext;
+
+	len_name = ft_strlen(filename);
+	len_ext = ft_strlen(extension);
+	if (len_name > len_ext)
+	{
+		if (ft_strncmp(&filename[len_name - len_ext], extension, len_ext) == 0)
+			return ;
+	}
+	error_msg(fdf, "Error: Not a .fdf file", 0, 1);
+}
 
 /* Counts elements in one line seperated by space */
 int	get_line_elements(t_fdf *fdf, char *line)
@@ -45,7 +61,6 @@ int	get_line_elements(t_fdf *fdf, char *line)
 if line is correctly formated */
 void	line_check(t_fdf *fdf, char *line)
 {
-	printf("Column length: %i\n", fdf->map_size.x);
 	if (fdf->map_size.x == 0)
 		fdf->map_size.x = get_line_elements(fdf, line);
 	else if (get_line_elements(fdf, line) != fdf->map_size.x)
@@ -61,6 +76,7 @@ void	check_map_format(t_fdf *fdf, char *filename)
 	char	*line;
 	int		fd;
 
+	check_map_extension(fdf, filename, ".fdf");
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		error_msg(fdf, "Error: Opening file.", 1, 1);

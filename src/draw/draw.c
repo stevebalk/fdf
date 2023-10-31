@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 14:41:41 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 21:47:00 by sbalk            ###   ########.fr       */
+/*   Created: 2023/09/28 15:28:39 by sbalk             #+#    #+#             */
+/*   Updated: 2023/10/31 18:09:15 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
 #include "fdf.h"
 
-int	main(int argc, char *argv[])
+void	my_mlx_pixel_put(t_data *data, t_vec2i pos, int color)
 {
-	t_fdf	fdf;
+	char	*dst;
 
-	if (argc != 2)
-	{
-		ft_printf("Wrong number of arguments.\n");
-		ft_printf("Use: ./fdf <mapfile>\n");
-		exit(1);
-	}
-	init_fdf(&fdf);
-	check_map_format(&fdf, argv[1]);
-	init_maps(&fdf);
-	read_map(&fdf, argv[1]);
-	init_mlx(&fdf);
-	init_iso_projection(&fdf);
-	update_canvas(&fdf);
-	init_keyhooks(&fdf);
-	mlx_loop(fdf.mlx);
-	return (0);
+	if (pos.x < 0 || pos.y < 0 || pos.x >= data->win_size.x
+		|| pos.y >= data->win_size.y)
+		return ;
+	dst = data->addr + (pos.y * data->line_length + pos.x
+			* (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:17:22 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 15:09:35 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/31 15:58:03 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	change_rotation(float *axis, float degree)
 {
 	if (degree != 0.0)
 	{
-		*axis = deg_to_rad(degree);
+		*axis += deg_to_rad(degree);
 		return (1);
 	}
 	return (0);

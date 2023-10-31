@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_handling.c                                     :+:      :+:    :+:   */
+/*   key_press_checks.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/28 15:35:44 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 15:04:27 by sbalk            ###   ########.fr       */
+/*   Created: 2023/10/31 21:27:14 by sbalk             #+#    #+#             */
+/*   Updated: 2023/10/31 21:31:59 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int	movement_keys_pressed(int keycode, t_fdf *fdf)
 {
-	int pressed;
+	int	pressed;
 
 	pressed = 0;
-	if (keycode == XK_w)
+	if (keycode == XK_Up)
 		pressed = change_offset(&fdf->offset.y, -OFFSET_STEP);
-	if (keycode == XK_s)
+	if (keycode == XK_Down)
 		pressed = change_offset(&fdf->offset.y, OFFSET_STEP);
-	if (keycode == XK_a)
+	if (keycode == XK_Left)
 		pressed = change_offset(&fdf->offset.x, -OFFSET_STEP);
-	if (keycode == XK_d)
+	if (keycode == XK_Right)
 		pressed = change_offset(&fdf->offset.x, OFFSET_STEP);
 	return (pressed);
 }
@@ -33,17 +33,17 @@ int	rotation_keys_pressed(int keycode, t_fdf *fdf)
 	int		pressed;
 
 	pressed = 0;
-	if (keycode == XK_Left)
+	if (keycode == XK_q)
 		pressed = change_rotation(&fdf->angle.z, ROTATION_STEP);
-	if (keycode == XK_Right)
+	if (keycode == XK_e)
 		pressed = change_rotation(&fdf->angle.z, -ROTATION_STEP);
-	if (keycode == XK_Up)
+	if (keycode == XK_a)
 		pressed = change_rotation(&fdf->angle.x, ROTATION_STEP);
-	if (keycode == XK_Down)
+	if (keycode == XK_d)
 		pressed = change_rotation(&fdf->angle.x, -ROTATION_STEP);
-	if (keycode == XK_k)
+	if (keycode == XK_s)
 		pressed = change_rotation(&fdf->angle.y, ROTATION_STEP);
-	if (keycode == XK_l)
+	if (keycode == XK_w)
 		pressed = change_rotation(&fdf->angle.y, -ROTATION_STEP);
 	return (pressed);
 }
@@ -72,22 +72,20 @@ int	zoom_keys_pressed(int keycode, t_fdf *fdf)
 	return (pressed);
 }
 
-int	key_hook(int keycode, t_fdf *fdf)
+int	projection_keys_pressed(int keycode, t_fdf *fdf)
 {
-	if (keycode == XK_Escape)
-		close_window(fdf);
-	if (movement_keys_pressed(keycode, fdf)
-	|| rotation_keys_pressed(keycode, fdf)
-	|| height_keys_pressed(keycode, fdf))
-		update_canvas(fdf);
-	return (0);
-}
+	int	pressed;
 
-int	mouse_hook(int keycode, int x, int y, t_fdf *fdf)
-{
-	x = x;
-	y = y;
-	if (zoom_keys_pressed(keycode, fdf))
-		update_canvas(fdf);
-	return (0);
+	pressed = 0;
+	if (keycode == XK_1 && fdf->projection != ISO_PROJECTION)
+	{
+		pressed = init_iso_projection(fdf);
+		fdf->projection = ISO_PROJECTION;
+	}
+	else if (keycode == XK_2 && fdf->projection != TOP_VIEW)
+	{
+		pressed = init_flat_projection(fdf);
+		fdf->projection = TOP_VIEW;
+	}
+	return (pressed);
 }

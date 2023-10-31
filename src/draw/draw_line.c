@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 12:18:40 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/29 20:49:19 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/31 21:26:07 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	is_point_in_window(t_fdf *fdf, t_vec2i point)
 int	get_next_point(t_line *line, t_vec2i *start, t_vec2i end)
 {
 	if (start->x == end.x && start->y == end.y)
-			return(0) ;
+		return (0);
 	line->err2 = 2 * line->err;
 	if (line->err2 >= line->dy)
 	{
@@ -50,7 +50,7 @@ int	get_next_point(t_line *line, t_vec2i *start, t_vec2i end)
 	return (1);
 }
 
-int is_line_visible(t_fdf *fdf, t_vec2i start, t_vec2i end)
+int	is_line_visible(t_fdf *fdf, t_vec2i start, t_vec2i end)
 {
 	t_line	line;
 
@@ -59,13 +59,12 @@ int is_line_visible(t_fdf *fdf, t_vec2i start, t_vec2i end)
 	line.dy = -abs(end.y - start.y);
 	line.sy = ft_sign(start.y - end.y) * -1;
 	line.err = line.dx + line.dy;
-
 	if (is_point_in_window(fdf, start))
-		return 1;
+		return (1);
 	while (get_next_point(&line, &start, end))
 		if (is_point_in_window(fdf, start))
-			return 1;
-	return 0;
+			return (1);
+	return (0);
 }
 
 /* Bresenham's algorithm */

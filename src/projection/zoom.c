@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:29:00 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 15:06:20 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/31 21:24:20 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ float	fit_zoom_to_windowsize(t_fdf *fdf)
 		}
 		i++;
 	}
-	return ((float)fdf->win_size.y / ((float)highest_point - lowest_point) * 0.50);
+	return ((float)fdf->win_size.y
+		/ ((float)highest_point - lowest_point) * 0.50);
 }
 
 int	zoom_in(t_fdf *fdf, float value)
@@ -59,7 +60,7 @@ int	zoom_out(t_fdf *fdf, float value)
 		fdf->offset.x /= value;
 		fdf->offset.y /= value;
 		fdf->zoom /= value;
-		return(1);
+		return (1);
 	}
-	return(0);
+	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/10/31 13:43:57 by sbalk            ###   ########.fr        #
+#    Updated: 2023/10/31 21:30:05 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,23 +36,26 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 SRC_FILES	=	main \
-				init_1 \
-				init_2 \
-				error \
-				parsing \
-				check_map \
-				key_handling \
-				draw \
-				draw_line \
-				draw_line_gradient \
-				projection \
-				math \
-				zoom \
-				update_canvas \
-				height_manipulation \
-				rotation \
-				transform \
-				exit \
+				init/init_1 \
+				init/init_2 \
+				parsing/parsing \
+				parsing/check_map \
+				user_input/key_handling \
+				user_input/key_press_checks \
+				draw/draw \
+				draw/draw_line \
+				draw/draw_line_gradient \
+				draw/draw_rect \
+				draw/draw_mesh \
+				draw/update_canvas \
+				projection/projection \
+				projection/zoom \
+				projection/height_manipulation \
+				projection/rotation \
+				projection/transform \
+				misc/error \
+				misc/math \
+				misc/exit \
 
 SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ				=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
@@ -69,6 +72,12 @@ $(NAME):	$(OBJ)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 			@mkdir -p $(OBJ_DIR)
+			@mkdir -p $(OBJ_DIR)/user_input
+			@mkdir -p $(OBJ_DIR)/projection
+			@mkdir -p $(OBJ_DIR)/parsing
+			@mkdir -p $(OBJ_DIR)/misc
+			@mkdir -p $(OBJ_DIR)/draw
+			@mkdir -p $(OBJ_DIR)/init
 			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
 			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 

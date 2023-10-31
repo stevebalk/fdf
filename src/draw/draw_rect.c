@@ -1,22 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_2.c                                           :+:      :+:    :+:   */
+/*   draw_rect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 13:41:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 13:42:33 by sbalk            ###   ########.fr       */
+/*   Created: 2023/10/31 18:05:42 by sbalk             #+#    #+#             */
+/*   Updated: 2023/10/31 18:06:10 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	init_keyhooks(t_fdf *fdf)
+void	draw_rect(t_data *data, t_vec2i start, t_vec2i end, int color)
 {
-	mlx_key_hook(fdf->win, &key_hook, fdf);
-	mlx_hook(fdf->win, DestroyNotify,
-	StructureNotifyMask, &close_window, fdf);
-	mlx_mouse_hook(fdf->win, &mouse_hook, fdf);
-	// mlx_loop_hook(fdf->mlx, &party, &fdf);
+	int	y_start;
+
+	y_start = start.y;
+	while (start.x < end.x)
+	{
+		start.y = y_start;
+		while (start.y < end.y)
+		{
+			my_mlx_pixel_put(data, start, color);
+			start.y++;
+		}
+		start.x++;
+	}
+}
+
+void	draw_background(t_data *data, t_vec2i size, int color)
+{
+	t_vec2i	start;
+
+	start.x = 0;
+	start.y = 0;
+	draw_rect(data, start, size, color);
 }

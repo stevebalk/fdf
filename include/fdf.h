@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 15:23:57 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/31 21:31:46 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,11 @@
 #define DEFAULT_COLOR		0x00FFFFFF
 #define BACKGROUND_COLOR	0x00000019
 
-/* cos(0.523599) and sin(0.523599) isometric constant values */
+/* Projection Bitmask */
+#define ISO_PROJECTION	1<<0
+#define TOP_VIEW		1<<1
+
+/* Cos(0.523599) and Sin(0.523599) isometric constant values */
 
 #define ISO_COS_VALUE 0.86602540378
 #define ISO_SIN_VALUE 0.49999999999
@@ -120,23 +124,24 @@ typedef struct	s_rgb
 
 /* FdF main struct, saving all data that 
 is needed everywhere in the program */
-typedef struct	s_fdf
+typedef struct		s_fdf
 {
-	void		*mlx;
-	void		*win;
-	t_data		*img;
-	t_vert2d	**map;
-	t_vert3d	**input_map;
-	t_vec2i		win_size;
-	t_vec2i		map_size;
-	t_vec2i		win_center;
-	t_vec2		pivot;
-	t_vec2i		offset;
-	int			bg_color;
-	int			default_color;
-	float		zoom;
-	t_vec3		angle;
-}				t_fdf;
+	void			*mlx;
+	void			*win;
+	t_data			*img;
+	t_vert2d		**map;
+	t_vert3d		**input_map;
+	t_vec2i			win_size;
+	t_vec2i			map_size;
+	t_vec2i			win_center;
+	t_vec2			pivot;
+	t_vec2i			offset;
+	int				bg_color;
+	int				default_color;
+	float			zoom;
+	t_vec3			angle;
+	unsigned int	projection;
+}					t_fdf;
 
 /*Struct for keyhook */
 typedef struct	s_vars
@@ -170,35 +175,36 @@ typedef struct	s_vars
 void	init_fdf(t_fdf *fdf);
 void	init_mlx(t_fdf *fdf);
 void	init_maps(t_fdf *fdf);
+int		init_iso_projection(t_fdf *fdf);
+int		init_flat_projection(t_fdf *fdf);
 
 /* Map parsing */
 
 void	check_map_format(t_fdf *fdf, char *filename);
 void	read_map(t_fdf *fdf, char *filename);
 
-/* ERROR */
-
-void	error_msg(t_fdf *fdf, char *msg, int use_errno, int shall_exit);
 
 /* DRAW */
 
 void	my_mlx_pixel_put(t_data *data, t_vec2i vec2, int color);
+void	draw_background(t_data *data, t_vec2i size, int color);
 int		get_next_point(t_line *line, t_vec2i *start, t_vec2i end);
 void	draw_rect(t_data *data, t_vec2i start, t_vec2i end, int color);
-void	draw_background(t_data *data, t_vec2i size, int color);
 void	draw_line(t_fdf *fdf, t_vec2i start, t_vec2i end, int color);
-void	draw_point(t_data *data, t_vec2i pos, int size, int color);
-void	draw_cube(t_data *data, int size);
+void	draw_line_gradient(t_fdf *fdf, t_vert2d start, t_vert2d end);
 void	draw_mesh(t_fdf *fdf);
 void	update_canvas(t_fdf *fdf);
-
-void	draw_line_gradient(t_fdf *fdf, t_vert2d start, t_vert2d end);
 
 /* KEY HANDLING */
 
 void	init_keyhooks(t_fdf *fdf);
 int		key_hook(int keycode, t_fdf *fdf);
 int		mouse_hook(int keycode, int x, int y, t_fdf *fdf);
+int		projection_keys_pressed(int keycode, t_fdf *fdf);
+int		zoom_keys_pressed(int keycode, t_fdf *fdf);
+int		height_keys_pressed(int keycode, t_fdf *fdf);
+int		rotation_keys_pressed(int keycode, t_fdf *fdf);
+int		movement_keys_pressed(int keycode, t_fdf *fdf);
 
 /* MATH */
 
@@ -208,7 +214,6 @@ double	rad_to_degree(double rad);
 /* Manipulation */
 
 void	transform(t_fdf *fdf, t_vec2i direction);
-void	rotate(t_fdf *fdf);
 void	rotate_x(t_vec3 *vec, float rad);
 void	rotate_y(t_vec3 *vec, float rad);
 void	rotate_z(t_vec3 *vec, float rad);
@@ -217,16 +222,20 @@ int		change_offset(int *axis, int value);
 int		change_rotation(float *axis, float value);
 int		zoom_in(t_fdf *fdf, float value);
 int		zoom_out(t_fdf *fdf, float value);
+float	fit_zoom_to_windowsize(t_fdf *fdf);
 
 /* PROJECTION */
 
-float	fit_zoom_to_windowsize(t_fdf *fdf);
-void	project_iso(t_fdf *fdf);
-void	project_flat(t_fdf *fdf);
+void	project_iso(t_fdf *fdf, t_vec3 *src, t_vec2i *dst);
+void	project_flat(t_fdf *fdf, t_vec3 *src, t_vec2i *dst);
 
 /* MEMORY */
 
 void	free_everything(t_fdf *fdf);
+
+/* ERROR */
+
+void	error_msg(t_fdf *fdf, char *msg, int use_errno, int shall_exit);
 
 /* Exit */
 

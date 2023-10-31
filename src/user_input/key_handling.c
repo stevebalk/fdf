@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   key_handling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 14:41:41 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 21:47:00 by sbalk            ###   ########.fr       */
+/*   Created: 2023/09/28 15:35:44 by sbalk             #+#    #+#             */
+/*   Updated: 2023/10/31 21:32:11 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
 #include "fdf.h"
 
-int	main(int argc, char *argv[])
+int	key_hook(int keycode, t_fdf *fdf)
 {
-	t_fdf	fdf;
+	if (keycode == XK_Escape)
+		close_window(fdf);
+	if (movement_keys_pressed(keycode, fdf)
+		|| rotation_keys_pressed(keycode, fdf)
+		|| height_keys_pressed(keycode, fdf)
+		|| projection_keys_pressed(keycode, fdf))
+		update_canvas(fdf);
+	return (0);
+}
 
-	if (argc != 2)
-	{
-		ft_printf("Wrong number of arguments.\n");
-		ft_printf("Use: ./fdf <mapfile>\n");
-		exit(1);
-	}
-	init_fdf(&fdf);
-	check_map_format(&fdf, argv[1]);
-	init_maps(&fdf);
-	read_map(&fdf, argv[1]);
-	init_mlx(&fdf);
-	init_iso_projection(&fdf);
-	update_canvas(&fdf);
-	init_keyhooks(&fdf);
-	mlx_loop(fdf.mlx);
+int	mouse_hook(int keycode, int x, int y, t_fdf *fdf)
+{
+	x = x;
+	y = y;
+	if (zoom_keys_pressed(keycode, fdf))
+		update_canvas(fdf);
 	return (0);
 }

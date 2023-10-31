@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:35:08 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 14:18:18 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/31 21:51:52 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	init_mlx(t_fdf *fdf)
 			&(fdf->img->bits_per_pixel),
 			&(fdf->img->line_length), &(fdf->img->endian));
 	fdf->img->win_size = fdf->win_size;
-	printf("Line length: %d\n", fdf->img->line_length / 4);
 }
 
 void	init_fdf(t_fdf *fdf)
@@ -90,8 +89,9 @@ void	init_fdf(t_fdf *fdf)
 	fdf->default_color = DEFAULT_COLOR;
 	fdf->zoom = 1;
 	fdf->angle = (t_vec3){0.0, 0.0, 0.0};
-	fdf->win_center = (t_vec2i) {fdf->win_size.x / 2, fdf->win_size.y / 2};
+	fdf->win_center = (t_vec2i){fdf->win_size.x / 2, fdf->win_size.y / 2};
 	fdf->offset = (t_vec2i){0, 0};
+	fdf->projection = 1;
 }
 
 void	init_maps(t_fdf *fdf)
