@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 13:15:38 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/29 18:16:13 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/31 15:36:32 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 static void	apply_transformations(t_fdf *fdf, t_vec3 *src, t_vec2i *dst)
 {
-	rotate_z(src, fdf->angle.z);
-	rotate_x(src, fdf->angle.x);
-	rotate_y(src, fdf->angle.y);
-	dst->x = ft_round(((src->x - src->y) * cos(0.523599)) * fdf->zoom);
-	dst->y = ft_round((-src->z + (src->x + src->y) * sin(0.523599)) * fdf->zoom);
-	// dst->x = ft_round((src->x - src->y) * 0.999958244);
-	// dst->y = ft_round(-src->z + (src->x + src->y) * 0.009138399);
+	if (fdf->angle.z)
+		rotate_z(src, fdf->angle.z);
+	if (fdf->angle.x)
+		rotate_x(src, fdf->angle.x);
+	if (fdf->angle.y)
+		rotate_y(src, fdf->angle.y);
+	dst->x = ft_round(((src->x - src->y) * ISO_COS_VALUE) * fdf->zoom);
+	dst->y = ft_round((-src->z + (src->x + src->y) * ISO_SIN_VALUE) * fdf->zoom);
 	dst->x += fdf->win_center.x + fdf->offset.x;
 	dst->y += fdf->win_center.y + fdf->offset.y;
 }
@@ -47,5 +48,4 @@ void	update_canvas(t_fdf *fdf)
 	fdf->angle.x = 0;
 	fdf->angle.y = 0;
 	fdf->angle.z = 0;
-	// transform(fdf, fdf->offset);
 }

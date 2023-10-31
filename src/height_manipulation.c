@@ -6,13 +6,13 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 16:48:28 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/27 17:09:41 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/31 14:07:33 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	change_height(t_fdf *fdf, float value)
+int	change_height(t_fdf *fdf, float value)
 {
 	int			i;
 	int			j;
@@ -31,4 +31,5 @@ void	change_height(t_fdf *fdf, float value)
 		}
 		i++;
 	}
+	return (1);
 }

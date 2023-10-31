@@ -6,20 +6,11 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 16:29:21 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/29 20:39:32 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/31 13:01:40 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-/* Checks file integrity */
-void	check_file_integrity(t_fdf *fdf, char *filename)
-{
-	if (access(filename, F_OK) == -1)
-		error_msg(fdf, "Error: File does not exist", 1, 1);
-	if (access(filename, R_OK) == -1)
-		error_msg(fdf, "Error: No read permission", 1, 1);
-}
 
 /* Counts elements in one line seperated by space */
 int	get_line_elements(t_fdf *fdf, char *line)
@@ -70,7 +61,6 @@ void	check_map_format(t_fdf *fdf, char *filename)
 	char	*line;
 	int		fd;
 
-	check_file_integrity(fdf, filename);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		error_msg(fdf, "Error: Opening file.", 1, 1);

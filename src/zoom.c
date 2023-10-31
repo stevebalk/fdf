@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:29:00 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/29 20:26:59 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/31 15:06:20 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,26 @@ float	fit_zoom_to_windowsize(t_fdf *fdf)
 	return ((float)fdf->win_size.y / ((float)highest_point - lowest_point) * 0.50);
 }
 
-void	zoom(t_fdf *fdf, int keycode)
+int	zoom_in(t_fdf *fdf, float value)
 {
-	if (keycode == MOUSE_WHEEL_UP)
+	if (fdf->zoom < ZOOM_MAX)
 	{
-		if (fdf->zoom < fdf->max_zoom)
-		{
-			fdf->offset.x *= fdf->zoom_mod;
-			fdf->offset.y *= fdf->zoom_mod;
-			fdf->zoom *= fdf->zoom_mod;
-		}
+		fdf->offset.x *= value;
+		fdf->offset.y *= value;
+		fdf->zoom *= value;
+		return (1);
 	}
-	if (keycode == MOUSE_WHEEL_DOWN)
+	return (0);
+}
+
+int	zoom_out(t_fdf *fdf, float value)
+{
+	if (fdf->zoom > ZOOM_MIN)
 	{
-		if (fdf->zoom > fdf->min_zoom)
-		{
-			fdf->offset.x /= fdf->zoom_mod;
-			fdf->offset.y /= fdf->zoom_mod;
-			fdf->zoom /= fdf->zoom_mod;
-		}
+		fdf->offset.x /= value;
+		fdf->offset.y /= value;
+		fdf->zoom /= value;
+		return(1);
 	}
+	return(0);
 }

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:22:11 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/29 16:54:57 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/31 14:01:26 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,14 @@ void	transform(t_fdf *fdf, t_vec2i direction)
 		}
 		i++;
 	}
+}
+
+int	change_offset(int *axis, int value)
+{
+	if (value != 0)
+	{
+		*axis += value;
+		return (1);
+	}
+	return (0);
 }

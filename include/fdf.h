@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/30 14:39:51 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/31 15:23:57 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,20 @@
 #define WIDTH			1920
 #define HEIGHT			1080
 
-#define ROTATION_ANGLE	5
-#define ZOOM_MOD		1.5
+/* Settings */
+#define ROTATION_STEP		5
+#define ZOOM_MOD			1.5
+#define ZOOM_MIN			1
+#define ZOOM_MAX			30
+#define OFFSET_STEP			50
+#define HEIGHT_STEP			1.0
+#define DEFAULT_COLOR		0x00FFFFFF
+#define BACKGROUND_COLOR	0x00000019
+
+/* cos(0.523599) and sin(0.523599) isometric constant values */
+
+#define ISO_COS_VALUE 0.86602540378
+#define ISO_SIN_VALUE 0.49999999999
 
 /* For line calculation */
 typedef struct	s_line
@@ -112,23 +124,18 @@ typedef struct	s_fdf
 {
 	void		*mlx;
 	void		*win;
+	t_data		*img;
 	t_vert2d	**map;
 	t_vert3d	**input_map;
 	t_vec2i		win_size;
 	t_vec2i		map_size;
+	t_vec2i		win_center;
 	t_vec2		pivot;
-	int			cur_color;
+	t_vec2i		offset;
 	int			bg_color;
 	int			default_color;
 	float		zoom;
-	float		zoom_mod;
-	float		min_zoom;
-	float		max_zoom;
-	t_data		*img;
 	t_vec3		angle;
-	float		rotation_angle;
-	t_vec2i		win_center;
-	t_vec2i		offset;
 }				t_fdf;
 
 /*Struct for keyhook */
@@ -139,13 +146,6 @@ typedef struct	s_vars
 }				t_vars;
 
 /* KEYCODES */
-
-#define ESC						65307
-#define SPACE					32
-#define ARROW_LEFT				65361
-#define ARROW_DOWN				65364
-#define ARROW_RIGHT				65363
-#define ARROW_UP				65362
 
 #define MOUSE_WHEEL_UP			4
 #define MOUSE_WHEEL_DOWN		5
@@ -196,12 +196,9 @@ void	draw_line_gradient(t_fdf *fdf, t_vert2d start, t_vert2d end);
 
 /* KEY HANDLING */
 
-// int		key_hook(int keycode, t_vars *vars);
+void	init_keyhooks(t_fdf *fdf);
 int		key_hook(int keycode, t_fdf *fdf);
-int	mouse_hook(int keycode, int x, int y, t_fdf *fdf);
-// int		mouse_hook(int keycode, void *param);
-void	setup_controls(t_fdf *fdf);
-void	mouse_click(int key, void *param);
+int		mouse_hook(int keycode, int x, int y, t_fdf *fdf);
 
 /* MATH */
 
@@ -215,9 +212,11 @@ void	rotate(t_fdf *fdf);
 void	rotate_x(t_vec3 *vec, float rad);
 void	rotate_y(t_vec3 *vec, float rad);
 void	rotate_z(t_vec3 *vec, float rad);
-void	change_height(t_fdf *fdf, float value);
-void	zoom(t_fdf *fdf, int keycode);
-void	apply_zoom(t_fdf *fdf, float zoom_mod);
+int		change_height(t_fdf *fdf, float value);
+int		change_offset(int *axis, int value);
+int		change_rotation(float *axis, float value);
+int		zoom_in(t_fdf *fdf, float value);
+int		zoom_out(t_fdf *fdf, float value);
 
 /* PROJECTION */
 
@@ -228,5 +227,9 @@ void	project_flat(t_fdf *fdf);
 /* MEMORY */
 
 void	free_everything(t_fdf *fdf);
+
+/* Exit */
+
+int	close_window(t_fdf *fdf);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:17:22 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/29 17:13:10 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/31 15:09:35 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,32 +44,13 @@ void	rotate_z(t_vec3 *vec, float rad)
 	vec->y = old_x * sin(rad) + old_y * cos(rad);
 }
 
-/* Apply all rotations for this drawcall */
-void	rotate(t_fdf *fdf)
+/* Set axis rotation */
+int	change_rotation(float *axis, float degree)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	if (fdf->angle.x != 0.0 || fdf->angle.y != 0.0 || fdf->angle.z != 0.0)
+	if (degree != 0.0)
 	{
-		while (i < fdf->map_size.x)
-		{
-			j = 0;
-			while (j < fdf->map_size.y)
-			{
-				if (fdf->angle.z != 0.0)
-					rotate_z(&fdf->input_map[j][i].pos, fdf->angle.z);
-				if (fdf->angle.x != 0.0)
-					rotate_x(&fdf->input_map[j][i].pos, fdf->angle.x);
-				if (fdf->angle.y != 0.0)
-					rotate_y(&fdf->input_map[j][i].pos, fdf->angle.y);
-				j++;
-			}
-			i++;
-		}
-		fdf->angle.x = 0.0;
-		fdf->angle.y = 0.0;
-		fdf->angle.z = 0.0;
+		*axis = deg_to_rad(degree);
+		return (1);
 	}
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:41:41 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/30 15:27:18 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/31 13:15:22 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,7 @@ int	main(int argc, char *argv[])
 	fdf.zoom = fit_zoom_to_windowsize(&fdf);
 	fdf.angle.z = deg_to_rad(-90);
 	update_canvas(&fdf);
-	mlx_key_hook(fdf.win, &key_hook, &fdf);
-	mlx_mouse_hook(fdf.win, &mouse_hook, &fdf);
-	// mlx_loop_hook(fdf.mlx, &party, &fdf);
+	init_keyhooks(&fdf);
 	mlx_loop(fdf.mlx);
 
 	return (0);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:35:08 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/29 16:32:05 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/10/31 14:18:18 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,9 @@ void	init_fdf(t_fdf *fdf)
 	fdf->win_size.x = WIDTH;
 	fdf->win_size.y = HEIGHT;
 	fdf->bg_color = 0x19;
-	fdf->default_color = WHITE;
-	fdf->cur_color = fdf->default_color;
+	fdf->default_color = DEFAULT_COLOR;
 	fdf->zoom = 1;
-	fdf->zoom_mod = ZOOM_MOD;
-	fdf->min_zoom = 1.0;
-	fdf->max_zoom = 30.0;
 	fdf->angle = (t_vec3){0.0, 0.0, 0.0};
-	fdf->rotation_angle = deg_to_rad(ROTATION_ANGLE);
 	fdf->win_center = (t_vec2i) {fdf->win_size.x / 2, fdf->win_size.y / 2};
 	fdf->offset = (t_vec2i){0, 0};
 }
