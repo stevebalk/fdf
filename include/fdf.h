@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/01 14:19:20 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/01 14:31:58 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct	s_vert2d
 	int		color;
 }				t_vert2d;
 
-/* Saving data for mlx */
+/* Data for mlx */
 typedef struct	s_data
 {
 	void	*img;
@@ -125,14 +125,13 @@ typedef struct	s_rgb
 	int	b;
 }				t_rgb;
 
-/* FdF main struct, saving all data that 
-is needed everywhere in the program */
+/* FdF main struct, data that 
+is used everywhere */
 typedef struct		s_fdf
 {
 	void			*mlx;
 	void			*win;
 	t_data			*img;
-	t_data			*hud;
 	t_vert2d		**map;
 	t_vert3d		**input_map;
 	t_vec2i			win_size;
@@ -146,13 +145,6 @@ typedef struct		s_fdf
 	t_vec3			angle;
 	unsigned int	projection;
 }					t_fdf;
-
-/*Struct for keyhook */
-typedef struct	s_vars
-{
-	void	*mlx;
-	void	*win;
-}				t_vars;
 
 /* KEYCODES */
 
@@ -246,6 +238,6 @@ void	error_msg(t_fdf *fdf, char *msg, int use_errno, int shall_exit);
 
 /* Exit */
 
-int	close_window(t_fdf *fdf);
+int		close_window(t_fdf *fdf);
 
 #endif
