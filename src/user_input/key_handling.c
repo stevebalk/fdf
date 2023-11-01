@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:35:44 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/01 15:40:17 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/01 16:53:17 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	key_hook(int keycode, t_fdf *fdf)
 {
 	if (keycode == XK_Escape)
-		close_window(fdf);
+		close_window(fdf, 0);
 	if (keycode == XK_x)
 		fdf->autorotate.x = ~fdf->autorotate.x;
 	if (keycode == XK_y)
