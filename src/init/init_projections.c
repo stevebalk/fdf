@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:41:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 23:36:03 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/01 13:15:31 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	init_iso_projection(t_fdf *fdf)
 	fdf->zoom = 1;
 	fdf->angle.z = deg_to_rad(-90);
 	fdf->zoom = fit_zoom_to_windowsize(fdf);
-	printf("ZOOM: %f\n", fdf->zoom);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 18:05:42 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 18:06:10 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/01 13:24:44 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	draw_rect(t_data *data, t_vec2i start, t_vec2i end, int color)
 		start.y = y_start;
 		while (start.y < end.y)
 		{
-			my_mlx_pixel_put(data, start, color);
+			pixel_put(data, start, color);
 			start.y++;
 		}
 		start.x++;

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 12:28:22 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/29 16:49:30 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/01 13:25:39 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ void	draw_line_gradient(t_fdf *fdf, t_vert2d start, t_vert2d end)
 	line.dy = -abs(end.pos.y - start.pos.y);
 	line.sy = ft_sign(start.pos.y - end.pos.y) * -1;
 	line.err = line.dx + line.dy;
-	my_mlx_pixel_put(fdf->img, start.pos, next_gradient_col(start.color,
+	pixel_put(fdf->img, start.pos, next_gradient_col(start.color,
 			end.color, i, steps));
 	while (get_next_point(&line, &start.pos, end.pos))
 	{
-		my_mlx_pixel_put(fdf->img, start.pos, next_gradient_col(start.color,
+		pixel_put(fdf->img, start.pos, next_gradient_col(start.color,
 				end.color, i, steps));
 		i++;
 	}

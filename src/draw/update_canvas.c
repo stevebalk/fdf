@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 13:15:38 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 22:53:18 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/01 14:18:44 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@ void	update_canvas(t_fdf *fdf)
 	}
 	draw_mesh(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
+	draw_hud(fdf, 20, 30, WHITE);
 }

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 18:08:50 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 18:49:55 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/01 13:48:01 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 void	draw_mesh_edge(t_fdf *fdf, t_vert2d *start, t_vert2d *end)
 {
-	if (start->color != end->color)
-		draw_line_gradient(fdf, *start, *end);
-	else
-		draw_line(fdf, start->pos, end->pos, start->color);
+	if (is_line_visible(fdf, start->pos, end->pos))
+	{
+		if (start->color != end->color)
+			draw_line_gradient(fdf, *start, *end);
+		else
+			draw_line(fdf, start->pos, end->pos, start->color);
+	}
 }
 
 /* Draw the mesh based on fdf->map */

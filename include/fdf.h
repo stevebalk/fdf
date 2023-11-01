@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 22:53:47 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/01 14:19:20 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # define FDF_H
 
 /* Windowsize */
+
+// #define WIDTH			640
+// #define HEIGHT			480
 // #define WIDTH			1024
 // #define HEIGHT			768
 #define WIDTH			1920
@@ -36,9 +39,9 @@
 #define DEFAULT_COLOR		0x00FFFFFF
 #define BACKGROUND_COLOR	0x00000019
 
-/* Projection Bitmask */
-#define ISO_PROJECTION	1<<0
-#define TOP_VIEW		1<<1
+/* Projection value */
+#define ISO_PROJECTION	1
+#define TOP_VIEW		2
 
 /* Cos(0.523599) and Sin(0.523599) isometric constant values */
 
@@ -187,10 +190,12 @@ void	read_map(t_fdf *fdf, char *filename);
 
 /* DRAW */
 
-void	my_mlx_pixel_put(t_data *data, t_vec2i vec2, int color);
+void	pixel_put(t_data *data, t_vec2i vec2, int color);
 void	draw_background(t_data *data, t_vec2i size, int color);
-int		get_next_point(t_line *line, t_vec2i *start, t_vec2i end);
+void	draw_hud(t_fdf *fdf, int x, int y, int col);
 void	draw_rect(t_data *data, t_vec2i start, t_vec2i end, int color);
+int		is_line_visible(t_fdf *fdf, t_vec2i start, t_vec2i end);
+int		get_next_point(t_line *line, t_vec2i *start, t_vec2i end);
 void	draw_line(t_fdf *fdf, t_vec2i start, t_vec2i end, int color);
 void	draw_line_gradient(t_fdf *fdf, t_vert2d start, t_vert2d end);
 void	draw_mesh(t_fdf *fdf);
