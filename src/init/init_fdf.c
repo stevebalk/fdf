@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:35:08 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 22:01:46 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/01 15:29:18 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ void	init_fdf(t_fdf *fdf)
 	fdf->win_center = (t_vec2i){fdf->win_size.x / 2, fdf->win_size.y / 2};
 	fdf->offset = (t_vec2i){0, 0};
 	fdf->projection = 1;
+	fdf->autorotate = (t_vec3i){0, 0, 0};
 }

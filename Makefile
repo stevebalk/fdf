@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/10/31 22:14:51 by sbalk            ###   ########.fr        #
+#    Updated: 2023/11/01 15:59:15 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ LIB_NAME	= libft.a
 MLX_DIR		= minilibx-linux/
 MLX_NAME	= libmlx.a
 CC			= cc
-CFLAGS		= -Werror -Wall -Wextra -fsanitize=address -g
+CFLAGS		= -Werror -Wall -Wextra -g
+# CFLAGS		= -Werror -Wall -Wextra -fsanitize=address -g
 # CFLAGS		= -Werror -Wall -Wextra -g
 RM			= rm
 SRC_DIR		= src/
@@ -46,6 +47,7 @@ SRC_FILES	=	main \
 				user_input/key_handling \
 				user_input/key_press_checks \
 				draw/draw \
+				draw/draw_hud \
 				draw/draw_line \
 				draw/draw_line_gradient \
 				draw/draw_rect \
@@ -56,6 +58,7 @@ SRC_FILES	=	main \
 				projection/height_manipulation \
 				projection/rotation \
 				projection/transform \
+				projection/autorotate \
 				misc/error \
 				misc/math \
 				misc/exit \

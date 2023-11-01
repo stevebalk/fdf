@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/01 14:31:58 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/01 16:48:13 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 #define ROTATION_STEP		5
 #define ZOOM_MOD			1.5
 #define ZOOM_MIN			1
-#define ZOOM_MAX			30
+#define ZOOM_MAX			250
 #define OFFSET_STEP			50
 #define HEIGHT_STEP			1.0
 #define DEFAULT_COLOR		0x00FFFFFF
@@ -144,6 +144,7 @@ typedef struct		s_fdf
 	float			zoom;
 	t_vec3			angle;
 	unsigned int	projection;
+	t_vec3i			autorotate;
 }					t_fdf;
 
 /* KEYCODES */
@@ -222,6 +223,7 @@ int		zoom_in(t_fdf *fdf, float value);
 int		zoom_out(t_fdf *fdf, float value);
 float	fit_zoom_to_windowsize(t_fdf *fdf);
 void	apply_transformations(t_fdf *fdf, t_vec3 *src, t_vec2i *dst);
+int		autorotate(t_fdf *fdf);
 
 /* PROJECTION */
 
@@ -238,6 +240,6 @@ void	error_msg(t_fdf *fdf, char *msg, int use_errno, int shall_exit);
 
 /* Exit */
 
-int		close_window(t_fdf *fdf);
+int		close_window(t_fdf *fdf, int error);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 20:46:27 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 13:11:50 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/01 16:48:02 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	free_everything(t_fdf *fdf)
 	ft_free_array((void **) fdf->map);
 }
 
-int	close_window(t_fdf *fdf)
+int	close_window(t_fdf *fdf, int error)
 {
 	free_everything(fdf);
-	exit(0);
+	exit(error);
 }

@@ -6,20 +6,20 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 12:28:22 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/01 13:25:39 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/01 16:40:34 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 /* Interpolate single component */
-int	interpolate_component(int start, int end, float t)
+static int	interpolate_component(int start, int end, float t)
 {
 	return (start + (int)((end - start) * t));
 }
 
 /* Interpolate color for every channel */
-int	interpolate_color(int startColor, int endColor, float t)
+static int	interpolate_color(int startColor, int endColor, float t)
 {
 	t_rgb	start;
 	t_rgb	end;
@@ -38,7 +38,7 @@ int	interpolate_color(int startColor, int endColor, float t)
 }
 
 /* Returns the color for the current point in a gradient line*/
-int	next_gradient_col(int s_col, int e_col, int step, int steps)
+static int	next_gradient_col(int s_col, int e_col, int step, int steps)
 {
 	float	t;
 	int		current_color;

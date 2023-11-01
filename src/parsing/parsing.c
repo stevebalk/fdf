@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:37:15 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/30 14:01:53 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/01 16:39:49 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 /* Transforms hex to int value, return -1 if invalid hex value*/
-int	hex_to_int(char *hex_string)
+static int	hex_to_int(char *hex_string)
 {
 	int	result;
 	int	i;
@@ -37,7 +37,7 @@ int	hex_to_int(char *hex_string)
 }
 
 /* Parse color, for example "0xFFBBDDFF" */
-int	parse_color(t_fdf *fdf, char *str)
+static int	parse_color(t_fdf *fdf, char *str)
 {
 	int	color;
 	int	i;
@@ -55,7 +55,7 @@ int	parse_color(t_fdf *fdf, char *str)
 }
 
 /* Parse one chunk, for example "2,0xFFFF00" */
-t_vert3d	parse_chunk(t_fdf *fdf, char *chunk, int row, int column)
+static t_vert3d	parse_chunk(t_fdf *fdf, char *chunk, int row, int column)
 {
 	char		*str;
 	t_vert3d	vert;
@@ -79,7 +79,7 @@ t_vert3d	parse_chunk(t_fdf *fdf, char *chunk, int row, int column)
 }
 
 /* Parse one line */
-void	parse_line(t_fdf *fdf, char *line, int row)
+static void	parse_line(t_fdf *fdf, char *line, int row)
 {
 	char	**chunks;
 	int		size;

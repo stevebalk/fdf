@@ -6,13 +6,13 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 18:08:50 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/01 13:48:01 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/01 16:40:44 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	draw_mesh_edge(t_fdf *fdf, t_vert2d *start, t_vert2d *end)
+static void	draw_mesh_edge(t_fdf *fdf, t_vert2d *start, t_vert2d *end)
 {
 	if (is_line_visible(fdf, start->pos, end->pos))
 	{
