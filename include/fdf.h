@@ -6,9 +6,12 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/01 16:48:13 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/02 12:18:23 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef FDF_H
+# define FDF_H
 
 # include "libft.h"
 # include "mlx_int.h"
@@ -17,64 +20,61 @@
 # include <fcntl.h>
 # include <errno.h>
 
-#ifndef FDF_H
-# define FDF_H
-
 /* Windowsize */
 
 // #define WIDTH			640
 // #define HEIGHT			480
 // #define WIDTH			1024
 // #define HEIGHT			768
-#define WIDTH			1920
-#define HEIGHT			1080
+# define WIDTH			1920
+# define HEIGHT			1080
 
 /* Settings */
-#define ROTATION_STEP		5
-#define ZOOM_MOD			1.5
-#define ZOOM_MIN			1
-#define ZOOM_MAX			250
-#define OFFSET_STEP			50
-#define HEIGHT_STEP			1.0
-#define DEFAULT_COLOR		0x00FFFFFF
-#define BACKGROUND_COLOR	0x00000019
+# define ROTATION_STEP		5
+# define ZOOM_MOD			1.5
+# define ZOOM_MIN			1
+# define ZOOM_MAX			250
+# define OFFSET_STEP			50
+# define HEIGHT_STEP			1.0
+# define DEFAULT_COLOR		0x00FFFFFF
+# define BACKGROUND_COLOR	0x00000019
 
 /* Projection value */
-#define ISO_PROJECTION	1
-#define TOP_VIEW		2
+# define ISO_PROJECTION	1
+# define TOP_VIEW		2
 
 /* Cos(0.523599) and Sin(0.523599) isometric constant values */
 
-#define ISO_COS_VALUE 0.86602540378
-#define ISO_SIN_VALUE 0.49999999999
+# define ISO_COS_VALUE 0.86602540378
+# define ISO_SIN_VALUE 0.49999999999
 
 /* For line calculation */
-typedef struct	s_line
+typedef struct s_line
 {
 	int	dx;
 	int	sx;
 	int	dy;
 	int	sy;
-	int err;
-	int err2;
+	int	err;
+	int	err2;
 }				t_line;
 
 /* Vector 2 only integers */
-typedef struct	s_vec2i
+typedef struct s_vec2i
 {
 	int	x;
 	int	y;
 }				t_vec2i;
 
 /* Vector 2 floating point */
-typedef struct	s_vec2
+typedef struct s_vec2
 {
 	float	x;
 	float	y;
 }				t_vec2;
 
 /* Vector 3 only integers */
-typedef struct	s_vec3i
+typedef struct s_vec3i
 {
 	int	x;
 	int	y;
@@ -82,7 +82,7 @@ typedef struct	s_vec3i
 }				t_vec3i;
 
 /* Vector 3 floating point */
-typedef struct	s_vec3
+typedef struct s_vec3
 {
 	float	x;
 	float	y;
@@ -91,7 +91,7 @@ typedef struct	s_vec3
 
 /* Vector 3 floating point vertice, saving position
 color and if height is changeable */
-typedef struct	s_vert3d
+typedef struct s_vert3d
 {
 	t_vec3	pos;
 	int		color;
@@ -100,14 +100,14 @@ typedef struct	s_vert3d
 
 /* Vector 2 integer vertice, saving position
 and color */
-typedef struct	s_vert2d
+typedef struct s_vert2d
 {
 	t_vec2i	pos;
 	int		color;
 }				t_vert2d;
 
 /* Data for mlx */
-typedef struct	s_data
+typedef struct s_data
 {
 	void	*img;
 	char	*addr;
@@ -118,7 +118,7 @@ typedef struct	s_data
 }				t_data;
 
 /* Save rgb values in different variables */
-typedef struct	s_rgb
+typedef struct s_rgb
 {
 	int	r;
 	int	g;
@@ -127,7 +127,7 @@ typedef struct	s_rgb
 
 /* FdF main struct, data that 
 is used everywhere */
-typedef struct		s_fdf
+typedef struct s_fdf
 {
 	void			*mlx;
 	void			*win;
@@ -149,23 +149,23 @@ typedef struct		s_fdf
 
 /* KEYCODES */
 
-#define MOUSE_WHEEL_UP			4
-#define MOUSE_WHEEL_DOWN		5
-#define MOUSE_WHEEL_CLICK		2
-#define MOUSE_CLICK_LEFT		1
-#define MOUSE_CLICK_RIGHT		3
-#define MOUSE_CLICK_FORWARD		9
-#define MOUSE_CLICK_BACKWARD	8
+# define MOUSE_WHEEL_UP			4
+# define MOUSE_WHEEL_DOWN		5
+# define MOUSE_WHEEL_CLICK		2
+# define MOUSE_CLICK_LEFT		1
+# define MOUSE_CLICK_RIGHT		3
+# define MOUSE_CLICK_FORWARD		9
+# define MOUSE_CLICK_BACKWARD	8
 
 /* COLORS */
-#define WHITE	0x00FFFFFF
-#define BLACK	0x00000000
-#define RED		0x00FF0000
-#define GREEN	0x0000FF00
-#define BLUE	0x000000FF
-#define YELLOW	0x00FFFF00
-#define CYAN	0x0000FFFF
-#define MAGENTA	0x00FF00FF
+# define WHITE	0x00FFFFFF
+# define BLACK	0x00000000
+# define RED		0x00FF0000
+# define GREEN	0x0000FF00
+# define BLUE	0x000000FF
+# define YELLOW	0x00FFFF00
+# define CYAN	0x0000FFFF
+# define MAGENTA	0x00FF00FF
 
 /* INIT */
 
@@ -179,7 +179,6 @@ int		init_flat_projection(t_fdf *fdf);
 
 void	check_map_format(t_fdf *fdf, char *filename);
 void	read_map(t_fdf *fdf, char *filename);
-
 
 /* DRAW */
 
