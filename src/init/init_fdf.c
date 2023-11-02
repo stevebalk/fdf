@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:35:08 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/01 15:29:18 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/02 13:10:00 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ void	init_fdf(t_fdf *fdf)
 	fdf->offset = (t_vec2i){0, 0};
 	fdf->projection = 1;
 	fdf->autorotate = (t_vec3i){0, 0, 0};
+	fdf->use_alti_colors = 0;
 }

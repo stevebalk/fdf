@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:35:44 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/01 23:51:53 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/02 13:01:39 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	key_hook(int keycode, t_fdf *fdf)
 		fdf->autorotate.y ^= 1;
 	if (keycode == XK_z)
 		fdf->autorotate.z ^= 1;
+	if (keycode == XK_h)
+		toggle_altitude_color(fdf);
 	if (movement_keys_pressed(keycode, fdf)
 		|| rotation_keys_pressed(keycode, fdf)
 		|| height_keys_pressed(keycode, fdf)

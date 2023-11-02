@@ -6,11 +6,34 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 13:15:38 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/01 14:58:18 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/02 13:10:22 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	toggle_altitude_color(t_fdf *fdf)
+{
+	int	i;
+	int	j;
+
+	fdf->use_alti_colors ^= 1;
+	j = 0;
+	while (j < fdf->map_size.y)
+	{
+		i = 0;
+		while (i < fdf->map_size.x)
+		{
+			if (fdf->use_alti_colors)
+				fdf->map[j][i].color = fdf->input_map[j][i].alt_color;
+			else
+				fdf->map[j][i].color = fdf->input_map[j][i].color;
+			i++;
+		}
+		j++;
+	}
+	update_canvas(fdf);
+}
 
 void	apply_transformations(t_fdf *fdf, t_vec3 *src, t_vec2i *dst)
 {

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:45:02 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/02 11:59:53 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/02 13:16:37 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,6 @@ void	draw_hud(t_fdf *fdf, int x, int y, int col)
 	mlx_string_put(fdf->mlx, fdf->win, x, y + off * 16, col, "Flat: 2");
 	mlx_string_put(fdf->mlx, fdf->win, x, y + off * 18, col, "Autorotate:");
 	mlx_string_put(fdf->mlx, fdf->win, x, y + off * 19, col, "x + y + z");
+	mlx_string_put(fdf->mlx, fdf->win, x, y + off * 21, col, "Use alt color");
+	mlx_string_put(fdf->mlx, fdf->win, x, y + off * 22, col, "h");
 }

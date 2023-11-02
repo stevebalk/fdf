@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/02 12:18:23 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/02 14:05:43 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,13 @@ typedef struct s_vec3
 	float	z;
 }				t_vec3;
 
-/* Vector 3 floating point vertice, saving position
-color and if height is changeable */
+/* Vector 3 floating point vertice, position
+color, altitude color and if height is modifiable */
 typedef struct s_vert3d
 {
 	t_vec3	pos;
 	int		color;
+	int		alt_color;
 	char	changeable;
 }				t_vert3d;
 
@@ -139,6 +140,7 @@ typedef struct s_fdf
 	t_vec2i			win_center;
 	t_vec2			pivot;
 	t_vec2i			offset;
+	int				use_alti_colors;
 	int				bg_color;
 	int				default_color;
 	float			zoom;
@@ -158,13 +160,17 @@ typedef struct s_fdf
 # define MOUSE_CLICK_BACKWARD	8
 
 /* COLORS */
-# define WHITE	0x00FFFFFF
-# define BLACK	0x00000000
+# define WHITE		0x00FFFFFF
+# define LIGHT_GREY	0x00BBBBBB
+# define BLACK		0x00000000
 # define RED		0x00FF0000
-# define GREEN	0x0000FF00
-# define BLUE	0x000000FF
-# define YELLOW	0x00FFFF00
-# define CYAN	0x0000FFFF
+# define DARK_RED	0x00880000
+# define GREEN		0x0000FF00
+# define DARK_GREEN	0x00008800
+# define BLUE		0x000000FF
+# define DARK_BLUE	0x00000088
+# define YELLOW		0x00FFFF00
+# define CYAN		0x0000FFFF
 # define MAGENTA	0x00FF00FF
 
 /* INIT */
@@ -179,6 +185,7 @@ int		init_flat_projection(t_fdf *fdf);
 
 void	check_map_format(t_fdf *fdf, char *filename);
 void	read_map(t_fdf *fdf, char *filename);
+void	set_altitude_color(t_fdf *fdf);
 
 /* DRAW */
 
@@ -223,6 +230,7 @@ int		zoom_out(t_fdf *fdf, float value);
 float	fit_zoom_to_windowsize(t_fdf *fdf);
 void	apply_transformations(t_fdf *fdf, t_vec3 *src, t_vec2i *dst);
 int		autorotate(t_fdf *fdf);
+void	toggle_altitude_color(t_fdf *fdf);
 
 /* PROJECTION */
 

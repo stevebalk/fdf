@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:37:15 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/01 16:39:49 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/02 12:50:50 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,4 +119,5 @@ void	read_map(t_fdf *fdf, char *filename)
 		row++;
 	}
 	close(fd);
+	set_altitude_color(fdf);
 }
