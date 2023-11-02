@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 21:27:14 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 21:31:59 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/02 11:53:02 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int	height_keys_pressed(int keycode, t_fdf *fdf)
 
 	pressed = 0;
 	if (keycode == XK_KP_Add)
-		pressed = change_height(fdf, HEIGHT_STEP);
+		pressed = change_height(fdf, 1.1);
 	if (keycode == XK_KP_Subtract)
-		pressed = change_height(fdf, -HEIGHT_STEP);
+		pressed = change_height(fdf, 0.9);
 	return (pressed);
 }
 

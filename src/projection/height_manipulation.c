@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 16:48:28 by sbalk             #+#    #+#             */
-/*   Updated: 2023/10/31 14:07:33 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/02 11:48:15 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	change_height(t_fdf *fdf, float value)
 		{
 			point = &fdf->input_map[j][i];
 			if (point->changeable)
-				point->pos.z += value;
+				point->pos.z *= value;
 			j++;
 		}
 		i++;

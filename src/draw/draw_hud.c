@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:45:02 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/01 15:46:17 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/02 11:59:53 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	draw_hud(t_fdf *fdf, int x, int y, int col)
 	mlx_string_put(fdf->mlx, fdf->win, x, y + off * 9, col, "Mousewheel");
 	mlx_string_put(fdf->mlx, fdf->win, x, y + off * 11, col, "Change height:");
 	mlx_string_put(fdf->mlx, fdf->win, x, y + off * 12, col, "Numpad + & -");
-	mlx_string_put(fdf->mlx, fdf->win, x, y + off * 13, col, "Projection:");
-	mlx_string_put(fdf->mlx, fdf->win, x, y + off * 14, col, "Iso:  1");
-	mlx_string_put(fdf->mlx, fdf->win, x, y + off * 15, col, "Flat: 2");
-	mlx_string_put(fdf->mlx, fdf->win, x, y + off * 17, col, "Autorotate:");
-	mlx_string_put(fdf->mlx, fdf->win, x, y + off * 18, col, "x + y + z");
+	mlx_string_put(fdf->mlx, fdf->win, x, y + off * 14, col, "Projection:");
+	mlx_string_put(fdf->mlx, fdf->win, x, y + off * 15, col, "Iso:  1");
+	mlx_string_put(fdf->mlx, fdf->win, x, y + off * 16, col, "Flat: 2");
+	mlx_string_put(fdf->mlx, fdf->win, x, y + off * 18, col, "Autorotate:");
+	mlx_string_put(fdf->mlx, fdf->win, x, y + off * 19, col, "x + y + z");
 }
