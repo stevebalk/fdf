@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:06:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/02 14:05:43 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/07 10:41:33 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@
 // #define HEIGHT			480
 // #define WIDTH			1024
 // #define HEIGHT			768
-# define WIDTH			1920
-# define HEIGHT			1080
+// # define WIDTH			1920
+// # define HEIGHT			1080
+# define WIDTH			2560
+# define HEIGHT			1440
 
 /* Settings */
 # define ROTATION_STEP		5

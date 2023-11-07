@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:35:44 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/02 13:01:39 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/07 10:52:24 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	key_hook(int keycode, t_fdf *fdf)
 
 int	mouse_hook(int keycode, int x, int y, t_fdf *fdf)
 {
-	x = x;
-	y = y;
+	(void) x;
+	(void) y;
 	if (zoom_keys_pressed(keycode, fdf))
 		update_canvas(fdf);
 	return (0);
